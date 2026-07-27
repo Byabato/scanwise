@@ -31,3 +31,5 @@ service-account*.json
 
 # Codex/local work
 .codex/
+
+.claude/
