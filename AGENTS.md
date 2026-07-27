@@ -16,7 +16,8 @@ decision support, privacy, and organization.
 - Flutter and Dart
 - Android first
 - Material 3
-- Minimum Android SDK: 23
+- Minimum Android SDK: 24 (Flutter 3.35.2's Gradle tooling enforces this as
+  its floor; see docs/plans/001-project-foundation.md)
 - Package ID: com.kelvinbyabato.scanwise
 
 ## Architecture

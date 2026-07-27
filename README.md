@@ -1,9 +1,3 @@
-
----
-
-# 2. `README.md`
-
-```md
 # ScanWise
 
 ScanWise is a privacy-first Android scan-intelligence application.
@@ -37,7 +31,10 @@ Capture → Interpret → Assess → Act → Organize
 
 ## Status
 
-Pre-development planning and repository setup.
+Project foundation milestone complete (`docs/plans/001-project-foundation.md`):
+a runnable Android Flutter shell with onboarding, Material 3 design tokens,
+and Scan / Library / Settings navigation. No scanner, persistence or real
+external actions are implemented yet.
 
 ## Documentation
 
@@ -47,10 +44,30 @@ Pre-development planning and repository setup.
 - Architecture: `docs/engineering/architecture.md`
 - Testing strategy: `docs/engineering/testing-strategy.md`
 - Privacy and security: `docs/engineering/privacy-and-security.md`
+- Foundation execution plan: `docs/plans/001-project-foundation.md`
 
-## Planned setup
+## Environment requirements
 
-The Flutter project will be generated using:
+- Windows, macOS or Linux
+- Flutter 3.35.2 (stable channel)
+- Dart 3.9.0 (bundled with the above Flutter version)
+- Java 17
+- Android SDK 36 (platform-tools, build-tools 36.0.0, an Android platform
+  image, and one emulator or a physical device)
+
+Verify your machine with:
+
+```bash
+flutter doctor -v
+```
+
+## Setup
+
+```bash
+flutter pub get
+```
+
+The project was generated with:
 
 ```bash
 flutter create \
@@ -58,3 +75,34 @@ flutter create \
   --project-name scanwise \
   --platforms android \
   .
+```
+
+## Run
+
+```bash
+flutter emulators --launch <emulator-id>   # or connect a physical device
+flutter run
+```
+
+## Validation
+
+Run before completing any task:
+
+```bash
+dart format --output=none --set-exit-if-changed .
+flutter analyze
+flutter test
+flutter build apk --debug
+```
+
+## Current limitations
+
+- No camera or gallery scanning (`mobile_scanner`, `image_picker` are not
+  added yet).
+- No permission requests (`permission_handler` is not added yet).
+- No persistence: the Library is always empty, and onboarding is shown again
+  on every cold start since completion is not remembered.
+- No real external actions (`url_launcher`, `share_plus` are not added yet).
+- The theme preference in Settings is functional but session-only; it is not
+  saved between launches.
+- No release signing configuration.

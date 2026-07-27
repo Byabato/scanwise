@@ -33,3 +33,25 @@ service-account*.json
 .codex/
 
 .claude/
+
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+**/doc/api/
+/build/
+migrate_working_dir/
+
+# IntelliJ related
+*.ipr
+*.iws
+
+# Miscellaneous
+*.class
+*.pyc
+.atom/
+.buildlog/
+.history
+.svn/
