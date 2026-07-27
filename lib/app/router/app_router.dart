@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../debug/component_gallery_screen.dart';
 import '../../features/library/library_screen.dart';
 import '../../features/onboarding/onboarding_screen.dart';
-import '../../features/scanner/scan_screen.dart';
+import '../../features/scanner/presentation/scan_screen.dart';
 import '../../features/settings/settings_screen.dart';
 import 'app_routes.dart';
 import 'navigation_shell.dart';
@@ -55,5 +57,10 @@ GoRouter _buildRouter() => GoRouter(
         ),
       ],
     ),
+    if (kDebugMode)
+      GoRoute(
+        path: AppRoutes.debugGallery,
+        builder: (context, state) => const ComponentGalleryScreen(),
+      ),
   ],
 );

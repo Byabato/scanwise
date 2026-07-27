@@ -5,4 +5,7 @@ abstract final class AppRoutes {
   static const scan = '/scan';
   static const library = '/library';
   static const settings = '/settings';
+
+  /// Registered only when `kDebugMode` is true — see app_router.dart.
+  static const debugGallery = '/debug/gallery';
 }
