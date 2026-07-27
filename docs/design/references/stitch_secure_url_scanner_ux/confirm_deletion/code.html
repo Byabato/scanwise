@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#094c6b",
+                    "on-secondary-container": "#566661",
+                    "positive": "#287A55",
+                    "on-primary-fixed-variant": "#00513f",
+                    "inverse-primary": "#89d5ba",
+                    "outline": "#6f7974",
+                    "tertiary-fixed": "#c8e6ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1b",
+                    "surface-container-highest": "#e2e3e1",
+                    "background": "#f9faf8",
+                    "on-error-container": "#93000a",
+                    "caution": "#A66610",
+                    "tertiary-fixed-dim": "#99cdf2",
+                    "on-error": "#ffffff",
+                    "surface-secondary": "#F1F3F0",
+                    "on-surface-variant": "#3f4944",
+                    "text-secondary": "#646B67",
+                    "surface-container": "#edeeec",
+                    "on-secondary-fixed-variant": "#3a4a45",
+                    "surface-container-low": "#f3f4f2",
+                    "primary-fixed-dim": "#89d5ba",
+                    "secondary": "#51625d",
+                    "primary-fixed": "#a4f2d6",
+                    "tertiary-container": "#2d6485",
+                    "on-primary-container": "#9be9cd",
+                    "secondary-fixed-dim": "#b9cac4",
+                    "error-container": "#ffdad6",
+                    "surface": "#f9faf8",
+                    "surface-variant": "#e2e3e1",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d9dad8",
+                    "surface-bright": "#f9faf8",
+                    "inverse-surface": "#2e3130",
+                    "on-tertiary-fixed": "#001e2e",
+                    "text-primary": "#161A18",
+                    "surface-primary": "#FFFFFF",
+                    "on-surface": "#191c1b",
+                    "primary": "#00513f",
+                    "outline-variant": "#bec9c3",
+                    "secondary-fixed": "#d5e6e0",
+                    "on-tertiary-container": "#b3dfff",
+                    "on-secondary-fixed": "#0f1e1a",
+                    "surface-tint": "#166b55",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#0a4c6c",
+                    "inverse-on-surface": "#f0f1ef",
+                    "primary-container": "#176b55",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#002117",
+                    "divider": "#E2E6E2",
+                    "secondary-container": "#d2e4dd",
+                    "critical": "#B43A3A",
+                    "surface-container-high": "#e7e8e6",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "12px",
+                    "margin-horizontal": "20px",
+                    "stack-sm": "4px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "screen-title": ["Inter"],
+                    "label-compact": ["Inter"],
+                    "screen-title-mobile": ["Inter"],
+                    "body-default": ["Inter"],
+                    "section-title": ["Inter"],
+                    "card-title": ["Inter"],
+                    "body-supporting": ["Inter"]
+            },
+            "fontSize": {
+                    "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dialog-backdrop {
+            background-color: rgba(0, 0, 0, 0.24);
+            backdrop-filter: blur(2px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top App Bar (Shared Component) -->
+<header class="bg-surface dark:bg-surface-dim flex justify-between items-center w-full px-margin-horizontal h-16 fixed top-0 z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">ScanWise</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200">
+<span class="material-symbols-outlined text-secondary dark:text-secondary-fixed-dim" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Main Content (Library View Background) -->
+<main class="flex-grow pt-20 pb-24 px-margin-horizontal">
+<div class="flex justify-between items-center mb-stack-lg">
+<h2 class="font-section-title text-section-title text-text-primary">Library</h2>
+<button class="text-primary font-label-compact text-label-compact px-3 py-1 rounded-full hover:bg-primary-container/10">Select</button>
+</div>
+<!-- Library Content Bento Grid (Subtle visual context behind dialog) -->
+<div class="grid grid-cols-2 gap-stack-md opacity-40 select-none pointer-events-none">
+<div class="col-span-2 bg-surface-primary border border-divider p-stack-lg rounded-[20px]">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container font-label-compact text-[10px] rounded-full">SECURE</span>
+<span class="text-text-secondary font-body-supporting text-body-supporting">2 hours ago</span>
+</div>
+<h3 class="font-card-title text-card-title text-text-primary">WIFI_GUEST_ACCESS</h3>
+</div>
+<span class="material-symbols-outlined text-text-secondary" data-icon="qr_code">qr_code</span>
+</div>
+</div>
+<div class="bg-surface-primary border border-divider p-stack-md rounded-[20px]">
+<div class="w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined text-text-secondary" data-icon="language">language</span>
+</div>
+<h3 class="font-card-title text-card-title text-text-primary mb-1">Portfolio</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">https://john.design</p>
+</div>
+<div class="bg-surface-primary border border-divider p-stack-md rounded-[20px]">
+<div class="w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center mb-stack-md">
+<span class="material-symbols-outlined text-text-secondary" data-icon="mail">mail</span>
+</div>
+<h3 class="font-card-title text-card-title text-text-primary mb-1">Newsletter</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">Sign up link</p>
+</div>
+<div class="col-span-2 bg-surface-primary border border-divider p-stack-lg rounded-[20px] flex items-center gap-stack-lg">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden grayscale">
+<img class="w-full h-full object-cover" data-alt="A macro close-up of a high-tech circuit board with glowing traces and microscopic components. The image has a clean, professional tech-focused aesthetic with deep forest green accents and cool-toned metallic surfaces, fitting a modern corporate security application's visual language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NHoMAE9aDBobnnA7iR0sZZFIg0qNCKX6gEW7EfRHzdiGeyIDbwTU9rFan0Hjw0YsiaDWpIfl6fmYNAGT2mLN-a-KNNiN-LfR60alji2pCBh9LVF6FgrlJ_KkA22VDNnjLnPP3xznFKhogKZDY5cVLZTyCBjdLovmu9dbG0ndpSE9_e9A4VGIjzsLObemwtKh721UJVCjK1gxuMmN8Z-9gWA4M7f30Jqm7I3CbXNsVdiIzsdAgNOqZg"/>
+</div>
+<div>
+<h3 class="font-card-title text-card-title text-text-primary">System Config</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Parsed 24 unique parameters</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Destructive Confirmation Dialog Overlay -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center px-margin-horizontal dialog-backdrop">
+<div class="bg-surface-container-low dark:bg-surface-container-lowest w-full max-w-[312px] rounded-[28px] overflow-hidden shadow-2xl flex flex-col items-center p-stack-lg text-center transform transition-all animate-in fade-in zoom-in duration-300">
+<!-- Warning Icon -->
+<div class="w-12 h-12 rounded-full bg-error-container/20 flex items-center justify-center mb-stack-lg">
+<span class="material-symbols-outlined text-critical" data-icon="delete_forever" style="font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;">delete_forever</span>
+</div>
+<!-- Title -->
+<h2 class="font-screen-title-mobile text-screen-title-mobile text-text-primary mb-stack-md">
+                Clear all history?
+            </h2>
+<!-- Message Body -->
+<p class="font-body-default text-body-default text-text-secondary mb-stack-lg leading-relaxed">
+                This action cannot be undone. All 24 saved scans will be permanently removed from this device.
+            </p>
+<!-- Actions Container -->
+<div class="flex flex-col w-full gap-stack-sm">
+<button class="w-full h-12 bg-critical text-white font-label-compact text-label-compact rounded-full transition-transform active:scale-95 duration-150" id="confirm-delete">
+                    Clear history
+                </button>
+<button class="w-full h-12 bg-transparent text-secondary font-label-compact text-label-compact rounded-full hover:bg-surface-container-high transition-colors" id="cancel-dialog">
+                    Cancel
+                </button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Shared Component) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe border-t border-divider dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest opacity-50">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact mt-1">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1">
+<span class="material-symbols-outlined" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="font-label-compact text-label-compact mt-1">Library</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact mt-1">Settings</span>
+</div>
+</nav>
+<script>
+        // Simple Interaction logic for the demonstration
+        document.getElementById('cancel-dialog').addEventListener('click', () => {
+            const overlay = document.querySelector('.dialog-backdrop');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            overlay.classList.remove('flex');
+            overlay.classList.add('hidden');
+        });
+
+        document.getElementById('confirm-delete').addEventListener('click', () => {
+            const btn = document.getElementById('confirm-delete');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]" data-icon="progress_activity">progress_activity</span>';
+            setTimeout(() => {
+                alert('History cleared successfully.');
+                location.reload();
+            }, 1000);
+        });
+
+        // Add ripple effect simulation on buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function (e) {
+                this.classList.add('opacity-80');
+            });
+            button.addEventListener('mouseup', function (e) {
+                this.classList.remove('opacity-80');
+            });
+            button.addEventListener('mouseleave', function (e) {
+                this.classList.remove('opacity-80');
+            });
+        });
+    </script>
+</body></html>

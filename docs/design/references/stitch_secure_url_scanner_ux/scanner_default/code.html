@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#bec9c3",
+                      "on-tertiary-container": "#b3dfff",
+                      "caution": "#A66610",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#b9cac4",
+                      "on-primary-container": "#9be9cd",
+                      "surface-primary": "#FFFFFF",
+                      "inverse-surface": "#2e3130",
+                      "error": "#ba1a1a",
+                      "on-error-container": "#93000a",
+                      "surface-secondary": "#F1F3F0",
+                      "background": "#f9faf8",
+                      "on-tertiary-fixed": "#001e2e",
+                      "tertiary": "#0a4c6c",
+                      "on-primary-fixed-variant": "#00513f",
+                      "positive": "#287A55",
+                      "on-secondary-fixed": "#0f1e1a",
+                      "divider": "#E2E6E2",
+                      "on-secondary": "#ffffff",
+                      "text-primary": "#161A18",
+                      "tertiary-fixed": "#c8e6ff",
+                      "on-secondary-fixed-variant": "#3a4a45",
+                      "surface-bright": "#f9faf8",
+                      "surface": "#f9faf8",
+                      "secondary": "#51625d",
+                      "surface-variant": "#e2e3e1",
+                      "on-primary-fixed": "#002117",
+                      "outline": "#6f7974",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#99cdf2",
+                      "on-surface-variant": "#3f4944",
+                      "inverse-on-surface": "#f0f1ef",
+                      "on-surface": "#191c1b",
+                      "primary": "#00513f",
+                      "surface-dim": "#d9dad8",
+                      "surface-tint": "#166b55",
+                      "primary-container": "#176b55",
+                      "secondary-fixed": "#d5e6e0",
+                      "text-secondary": "#646B67",
+                      "surface-container-highest": "#e2e3e1",
+                      "on-tertiary-fixed-variant": "#094c6b",
+                      "on-secondary-container": "#566661",
+                      "surface-container-low": "#f3f4f2",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#edeeec",
+                      "on-background": "#191c1b",
+                      "tertiary-container": "#2d6485",
+                      "critical": "#B43A3A",
+                      "secondary-container": "#d2e4dd",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#89d5ba",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#89d5ba",
+                      "surface-container-high": "#e7e8e6",
+                      "primary-fixed": "#a4f2d6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "stack-md": "12px",
+                      "stack-sm": "4px",
+                      "margin-horizontal": "20px",
+                      "base": "8px",
+                      "stack-lg": "24px"
+              },
+              "fontFamily": {
+                      "card-title": ["Inter"],
+                      "body-default": ["Inter"],
+                      "screen-title": ["Inter"],
+                      "screen-title-mobile": ["Inter"],
+                      "section-title": ["Inter"],
+                      "label-compact": ["Inter"],
+                      "body-supporting": ["Inter"]
+              },
+              "fontSize": {
+                      "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                      "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .camera-overlay {
+            background: radial-gradient(circle, transparent 150px, rgba(0, 0, 0, 0.4) 150px);
+        }
+
+        @keyframes pulse-frame {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .scanning-frame-segment {
+            animation: pulse-frame 2s ease-in-out infinite;
+        }
+
+        .blur-backdrop {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-default overflow-hidden select-none">
+<!-- Camera Preview Canvas (Full Screen) -->
+<div class="fixed inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A first-person perspective photograph of a modern, minimal home office interior during the daytime. On a clean white wall, a high-contrast graphic poster is mounted, featuring a prominent, sharp QR code as its central element. The lighting is soft and natural, coming from a nearby window, creating a calm and secure atmosphere. The composition emphasizes the clarity of the QR code, which is perfectly centered and ready for scanning within a mobile interface context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgVHgeGsIx2fmPIJWbetnbYfvl9WGbkSF7dWCF9kRjk1d8SVvOO3NfYxCPmQZqmdop8F4UwV6utVG9BNhG8ntaX7fZ8eyQZAW_a0DjIl_ofZ0wAT6WeNMiG203ucHnQNyJfrAm-nTugunhppVgQINyIlh0tL3BNpbmLEjjqKlrkp44tnUjc-bdDRB0vtrCJrx-iQD13KmrdTyfOH9QB9GP_2Iejn8x-JWFPv-RsxWygh40we3AfQzZyQ')"></div>
+<!-- Dark Dimmer Overlay -->
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<!-- Top App Bar (Transparent/Glass) -->
+<header class="fixed top-0 left-0 w-full z-50 h-16 flex justify-between items-center px-margin-horizontal blur-backdrop bg-white/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-white tracking-tight">ScanWise</h1>
+</div>
+<div class="flex items-center gap-2 px-3 py-1 bg-black/30 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-positive text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-compact text-label-compact text-white uppercase tracking-widest">Processed on this device</span>
+</div>
+</header>
+<!-- Main Scanning Area -->
+<main class="fixed inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+<!-- Corner Segments Scanning Frame -->
+<div class="relative w-[280px] h-[280px] flex items-center justify-center">
+<!-- Top Left -->
+<div class="scanning-frame-segment absolute top-0 left-0 w-12 h-12 border-t-4 border-l-4 border-white rounded-tl-[20px]"></div>
+<!-- Top Right -->
+<div class="scanning-frame-segment absolute top-0 right-0 w-12 h-12 border-t-4 border-r-4 border-white rounded-tr-[20px]"></div>
+<!-- Bottom Left -->
+<div class="scanning-frame-segment absolute bottom-0 left-0 w-12 h-12 border-b-4 border-l-4 border-white rounded-bl-[20px]"></div>
+<!-- Bottom Right -->
+<div class="scanning-frame-segment absolute bottom-0 right-0 w-12 h-12 border-b-4 border-r-4 border-white rounded-br-[20px]"></div>
+<!-- Scanning Line Animation (Optional visual flair) -->
+<div class="absolute w-[240px] h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-30 animate-[bounce_3s_infinite]"></div>
+</div>
+<!-- Instruction Text -->
+<div class="mt-stack-lg px-margin-horizontal text-center pointer-events-auto">
+<p class="font-body-default text-white drop-shadow-md bg-black/20 backdrop-blur-sm px-4 py-2 rounded-full inline-block">
+                Place a QR code or barcode inside the frame
+            </p>
+</div>
+<!-- Floating Controls (Bottom Centerish) -->
+<div class="absolute bottom-32 left-0 w-full px-10 flex justify-between items-center pointer-events-auto">
+<!-- Gallery Import -->
+<button class="w-14 h-14 rounded-full bg-black/40 blur-backdrop border border-white/20 flex items-center justify-center text-white active:scale-95 transition-transform duration-150 shadow-lg">
+<span class="material-symbols-outlined text-[28px]">image</span>
+</button>
+<!-- Torch Control -->
+<button class="w-14 h-14 rounded-full bg-black/40 blur-backdrop border border-white/20 flex items-center justify-center text-white active:scale-95 transition-transform duration-150 shadow-lg" onclick="toggleTorch(this)">
+<span class="material-symbols-outlined text-[28px]" id="torch-icon">flashlight_on</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-black/40 blur-backdrop border-t border-white/10">
+<!-- Scan (Active) -->
+<a class="flex flex-col items-center justify-center bg-white/20 text-white rounded-full px-5 py-1 transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact mt-0.5">Scan</span>
+</a>
+<!-- Library -->
+<a class="flex flex-col items-center justify-center text-white/70 px-5 py-1 hover:bg-white/10 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-compact text-label-compact mt-0.5">Library</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-white/70 px-5 py-1 hover:bg-white/10 rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-compact text-label-compact mt-0.5">Settings</span>
+</a>
+</nav>
+<script>
+        function toggleTorch(btn) {
+            const icon = document.getElementById('torch-icon');
+            if (icon.innerText === 'flashlight_on') {
+                icon.innerText = 'flashlight_off';
+                btn.classList.add('bg-white/90', 'text-primary');
+                btn.classList.remove('bg-black/40', 'text-white');
+            } else {
+                icon.innerText = 'flashlight_on';
+                btn.classList.remove('bg-white/90', 'text-primary');
+                btn.classList.add('bg-black/40', 'text-white');
+            }
+        }
+
+        // Simulate micro-interaction feedback on frame detection
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('ScanWise initialization complete.');
+        });
+    </script>
+</body></html>

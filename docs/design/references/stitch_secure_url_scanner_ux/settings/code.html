@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>ScanWise - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed-variant": "#094c6b",
+                      "on-secondary-container": "#566661",
+                      "positive": "#287A55",
+                      "on-primary-fixed-variant": "#00513f",
+                      "inverse-primary": "#89d5ba",
+                      "outline": "#6f7974",
+                      "tertiary-fixed": "#c8e6ff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#191c1b",
+                      "surface-container-highest": "#e2e3e1",
+                      "background": "#f9faf8",
+                      "on-error-container": "#93000a",
+                      "caution": "#A66610",
+                      "tertiary-fixed-dim": "#99cdf2",
+                      "on-error": "#ffffff",
+                      "surface-secondary": "#F1F3F0",
+                      "on-surface-variant": "#3f4944",
+                      "text-secondary": "#646B67",
+                      "surface-container": "#edeeec",
+                      "on-secondary-fixed-variant": "#3a4a45",
+                      "surface-container-low": "#f3f4f2",
+                      "primary-fixed-dim": "#89d5ba",
+                      "secondary": "#51625d",
+                      "primary-fixed": "#a4f2d6",
+                      "tertiary-container": "#2d6485",
+                      "on-primary-container": "#9be9cd",
+                      "secondary-fixed-dim": "#b9cac4",
+                      "error-container": "#ffdad6",
+                      "surface": "#f9faf8",
+                      "surface-variant": "#e2e3e1",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d9dad8",
+                      "surface-bright": "#f9faf8",
+                      "inverse-surface": "#2e3130",
+                      "on-tertiary-fixed": "#001e2e",
+                      "text-primary": "#161A18",
+                      "surface-primary": "#FFFFFF",
+                      "on-surface": "#191c1b",
+                      "primary": "#00513f",
+                      "outline-variant": "#bec9c3",
+                      "secondary-fixed": "#d5e6e0",
+                      "on-tertiary-container": "#b3dfff",
+                      "on-secondary-fixed": "#0f1e1a",
+                      "surface-tint": "#166b55",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#0a4c6c",
+                      "inverse-on-surface": "#f0f1ef",
+                      "primary-container": "#176b55",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#002117",
+                      "divider": "#E2E6E2",
+                      "secondary-container": "#d2e4dd",
+                      "critical": "#B43A3A",
+                      "surface-container-high": "#e7e8e6",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "12px",
+                      "margin-horizontal": "20px",
+                      "stack-sm": "4px",
+                      "gutter": "16px",
+                      "stack-lg": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "screen-title": ["Inter"],
+                      "label-compact": ["Inter"],
+                      "screen-title-mobile": ["Inter"],
+                      "body-default": ["Inter"],
+                      "section-title": ["Inter"],
+                      "card-title": ["Inter"],
+                      "body-supporting": ["Inter"]
+              },
+              "fontSize": {
+                      "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                      "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F7F8F6;
+            color: #161A18;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #00513f;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #00513f;
+        }
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface dark:bg-surface-dim min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-margin-horizontal h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">ScanWise</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 transition-colors duration-200 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full">
+<span class="material-symbols-outlined text-secondary" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto">
+<!-- Profile Header (Contextual Anchor) -->
+<div class="px-margin-horizontal py-stack-lg">
+<div class="flex items-center gap-gutter">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-surface-container border border-divider">
+<img class="w-full h-full object-cover" data-alt="A minimalist, professional portrait of a tech-savvy individual in a bright, modern studio. The lighting is soft and high-key, emphasizing a clean and intelligent aesthetic. The background is a muted sage green, maintaining the ScanWise brand palette of restrained sophistication and corporate minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ktMQ4M_Hlv2F2vaZuLjuO-dg-pQRwfbGtVPSeXloUlg2FnmtzeoWuQlSbzuq3STkTMfJ7P29QhkLcP5CAn9ul6fp9zxTlKRW2tm8wNW7W9WEKQ1fPeo51qC1i8hsLNKK86cd1-Yk2cZPI6-MXoWxDuPGBHyddhEqnRR9Ag9PJv5VZyN5oedI2ddMaqDFg1uA2osCWs_Lj46JY_2FzOdncWfyMcGQDR92TyAFRftV1M6xP6xBN8DVNQ"/>
+</div>
+<div>
+<h2 class="font-section-title text-section-title text-text-primary">Alex Chen</h2>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Premium Account • Pro Guard Enabled</p>
+</div>
+</div>
+</div>
+<!-- Settings Container -->
+<div class="space-y-stack-lg">
+<!-- Privacy and Data Section -->
+<section>
+<h3 class="px-margin-horizontal mb-stack-md font-label-compact text-label-compact text-primary uppercase tracking-wider">Privacy and data</h3>
+<div class="bg-surface-primary dark:bg-surface-container-low border-y border-divider">
+<!-- Toggle: Process scans on device -->
+<div class="flex items-center justify-between px-margin-horizontal py-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="memory">memory</span>
+<div>
+<p class="font-card-title text-card-title text-text-primary">Process scans on device</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Analysis never leaves your phone</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle: Incognito scanning -->
+<div class="flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="incognito">incognito</span>
+<div>
+<p class="font-card-title text-card-title text-text-primary">Incognito scanning</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Don't log scan history</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle: Automatically save scans -->
+<div class="flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="save">save</span>
+<div>
+<p class="font-card-title text-card-title text-text-primary">Automatically save scans</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Store results in Library</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Action: Clear scan history -->
+<button class="w-full flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors text-left">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-critical" data-icon="delete_sweep">delete_sweep</span>
+<div>
+<p class="font-card-title text-card-title text-critical">Clear scan history</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Wipe all local data</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-secondary" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Scanning Section -->
+<section>
+<h3 class="px-margin-horizontal mb-stack-md font-label-compact text-label-compact text-primary uppercase tracking-wider">Scanning</h3>
+<div class="bg-surface-primary dark:bg-surface-container-low border-y border-divider">
+<!-- Toggle: Haptic feedback -->
+<div class="flex items-center justify-between px-margin-horizontal py-4 hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="vibration">vibration</span>
+<p class="font-card-title text-card-title text-text-primary">Haptic feedback</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Toggle: Confirm before external actions -->
+<div class="flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="verified_user">verified_user</span>
+<div>
+<p class="font-card-title text-card-title text-text-primary">Confirm before external actions</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Verify URLs before opening</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Selection: Default camera -->
+<button class="w-full flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors text-left">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="photo_camera">photo_camera</span>
+<div>
+<p class="font-card-title text-card-title text-text-primary">Default camera</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Wide-angle (Back)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-secondary" data-icon="unfold_more">unfold_more</span>
+</button>
+<!-- Selection: Supported code formats -->
+<button class="w-full flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors text-left">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="qr_code">qr_code</span>
+<div>
+<p class="font-card-title text-card-title text-text-primary">Supported code formats</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">QR, Barcode, Data Matrix</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-secondary" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Appearance Section -->
+<section>
+<h3 class="px-margin-horizontal mb-stack-md font-label-compact text-label-compact text-primary uppercase tracking-wider">Appearance</h3>
+<div class="bg-surface-primary dark:bg-surface-container-low border-y border-divider">
+<div class="flex px-margin-horizontal py-4 gap-4 overflow-x-auto no-scrollbar">
+<!-- System Option -->
+<button class="flex-shrink-0 flex flex-col items-center gap-2 group">
+<div class="w-24 h-16 rounded-xl bg-surface-container-high border-2 border-primary flex items-center justify-center overflow-hidden">
+<div class="w-full h-full flex flex-col">
+<div class="h-1/2 bg-white w-full"></div>
+<div class="h-1/2 bg-slate-900 w-full"></div>
+</div>
+</div>
+<span class="font-label-compact text-label-compact text-primary font-semibold">System</span>
+</button>
+<!-- Light Option -->
+<button class="flex-shrink-0 flex flex-col items-center gap-2 group">
+<div class="w-24 h-16 rounded-xl bg-white border border-divider flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-secondary" data-icon="light_mode">light_mode</span>
+</div>
+<span class="font-label-compact text-label-compact text-text-secondary">Light</span>
+</button>
+<!-- Dark Option -->
+<button class="flex-shrink-0 flex flex-col items-center gap-2 group">
+<div class="w-24 h-16 rounded-xl bg-slate-900 border border-divider flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-slate-400" data-icon="dark_mode">dark_mode</span>
+</div>
+<span class="font-label-compact text-label-compact text-text-secondary">Dark</span>
+</button>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section>
+<h3 class="px-margin-horizontal mb-stack-md font-label-compact text-label-compact text-primary uppercase tracking-wider">About</h3>
+<div class="bg-surface-primary dark:bg-surface-container-low border-y border-divider">
+<button class="w-full flex items-center justify-between px-margin-horizontal py-4 hover:bg-surface-container-low transition-colors text-left">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<div>
+<p class="font-card-title text-card-title text-text-primary">Version</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">2.4.0 (Stable)</p>
+</div>
+</div>
+</button>
+<button class="w-full flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors text-left">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="description">description</span>
+<p class="font-card-title text-card-title text-text-primary">Terms of Service</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary" data-icon="open_in_new">open_in_new</span>
+</button>
+<button class="w-full flex items-center justify-between px-margin-horizontal py-4 border-t border-divider hover:bg-surface-container-low transition-colors text-left">
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-secondary" data-icon="policy">policy</span>
+<p class="font-card-title text-card-title text-text-primary">Privacy Policy</p>
+</div>
+<span class="material-symbols-outlined text-text-secondary" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</section>
+<!-- Logout Button -->
+<div class="px-margin-horizontal pb-8">
+<button class="w-full py-4 rounded-xl border border-divider text-critical font-card-title text-card-title hover:bg-red-50 transition-colors">
+                    Sign Out
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mandatory Shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe border-t border-divider dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest">
+<!-- Scan Tab -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact mt-1">Scan</span>
+</a>
+<!-- Library Tab -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-compact text-label-compact mt-1">Library</span>
+</a>
+<!-- Settings Tab (Active State Logic) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-compact text-label-compact mt-1">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for toggles
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const parent = this.closest('.cursor-pointer');
+                if (parent) {
+                    parent.style.backgroundColor = this.checked ? 'rgba(0, 81, 63, 0.04)' : 'transparent';
+                    setTimeout(() => {
+                        parent.style.backgroundColor = '';
+                    }, 200);
+                }
+            });
+        });
+
+        // Simple dark mode toggle simulation (visual only for this prototype)
+        function setTheme(theme) {
+            const html = document.documentElement;
+            if (theme === 'dark') {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+        }
+    </script>
+</body></html>

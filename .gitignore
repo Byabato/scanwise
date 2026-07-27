@@ -1,0 +1,33 @@
+
+---
+
+# 3. `.gitignore`
+
+Before Flutter generates its normal `.gitignore`, use this small initial version:
+
+```gitignore
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.iml
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+key.properties
+service-account*.json
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+
+# Codex/local work
+.codex/

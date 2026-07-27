@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "on-secondary-container": "#566661",
+                        "positive": "#287A55",
+                        "on-primary-fixed-variant": "#00513f",
+                        "inverse-primary": "#89d5ba",
+                        "outline": "#6f7974",
+                        "tertiary-fixed": "#c8e6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#191c1b",
+                        "surface-container-highest": "#e2e3e1",
+                        "background": "#f9faf8",
+                        "on-error-container": "#93000a",
+                        "caution": "#A66610",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "on-error": "#ffffff",
+                        "surface-secondary": "#F1F3F0",
+                        "on-surface-variant": "#3f4944",
+                        "text-secondary": "#646B67",
+                        "surface-container": "#edeeec",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "surface-container-low": "#f3f4f2",
+                        "primary-fixed-dim": "#89d5ba",
+                        "secondary": "#51625d",
+                        "primary-fixed": "#a4f2d6",
+                        "tertiary-container": "#2d6485",
+                        "on-primary-container": "#9be9cd",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9faf8",
+                        "surface-variant": "#e2e3e1",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d9dad8",
+                        "surface-bright": "#f9faf8",
+                        "inverse-surface": "#2e3130",
+                        "on-tertiary-fixed": "#001e2e",
+                        "text-primary": "#161A18",
+                        "surface-primary": "#FFFFFF",
+                        "on-surface": "#191c1b",
+                        "primary": "#00513f",
+                        "outline-variant": "#bec9c3",
+                        "secondary-fixed": "#d5e6e0",
+                        "on-tertiary-container": "#b3dfff",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "surface-tint": "#166b55",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#0a4c6c",
+                        "inverse-on-surface": "#f0f1ef",
+                        "primary-container": "#176b55",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#002117",
+                        "divider": "#E2E6E2",
+                        "secondary-container": "#d2e4dd",
+                        "critical": "#B43A3A",
+                        "surface-container-high": "#e7e8e6",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "margin-horizontal": "20px",
+                        "stack-sm": "4px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "screen-title": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "screen-title-mobile": ["Inter"],
+                        "body-default": ["Inter"],
+                        "section-title": ["Inter"],
+                        "card-title": ["Inter"],
+                        "body-supporting": ["Inter"]
+                    },
+                    "fontSize": {
+                        "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .toggle-checked .toggle-dot { transform: translateX(100%); }
+        .toggle-checked .toggle-bg { @apply bg-primary; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top AppBar (JSON Mapping: TopAppBar) -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 z-40">
+<div class="flex justify-between items-center w-full px-margin-horizontal h-16">
+<div class="flex items-center gap-3">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">Privacy &amp; Data</h1>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto px-margin-horizontal pb-32">
+<!-- Hero Branding/Status -->
+<section class="mt-stack-lg mb-stack-lg">
+<div class="bg-surface-container-low rounded-[20px] p-stack-lg border border-divider flex items-center gap-stack-lg">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<div>
+<h2 class="font-card-title text-card-title text-text-primary">Calm Intelligence</h2>
+<p class="font-body-supporting text-body-supporting text-text-secondary mt-1">Your data is yours. We prioritize restrained sophistication in security.</p>
+</div>
+</div>
+</section>
+<!-- Privacy Controls List -->
+<div class="space-y-stack-md">
+<h3 class="font-section-title text-section-title text-text-primary mb-stack-sm">Core Privacy</h3>
+<!-- Process Scans on Device (Always On) -->
+<div class="bg-surface-primary border border-divider rounded-[20px] p-stack-md flex items-start gap-stack-md">
+<div class="p-2 bg-surface-secondary rounded-xl text-primary">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<span class="font-card-title text-card-title text-text-primary">Process scans on device</span>
+<div class="px-2 py-1 bg-primary-fixed-dim text-primary rounded-full">
+<span class="font-label-compact text-label-compact">ALWAYS ON</span>
+</div>
+</div>
+<p class="font-body-supporting text-body-supporting text-text-secondary mt-1">
+                        All analysis happens locally on your secure enclave. No visual data ever leaves your device or touches our servers.
+                    </p>
+</div>
+</div>
+<!-- Incognito Scanning -->
+<label class="bg-surface-primary border border-divider rounded-[20px] p-stack-md flex items-start gap-stack-md cursor-pointer hover:bg-surface-container-low transition-colors duration-200">
+<div class="p-2 bg-surface-secondary rounded-xl text-primary">
+<span class="material-symbols-outlined">incognito</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<span class="font-card-title text-card-title text-text-primary">Incognito scanning</span>
+<div class="relative inline-block w-10 h-6 align-middle select-none transition duration-200 ease-in">
+<input class="sr-only" id="incognito_toggle" name="toggle" type="checkbox"/>
+<div class="block bg-outline-variant w-10 h-6 rounded-full transition-colors duration-200" id="incognito_bg"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ease-in-out" id="incognito_dot"></div>
+</div>
+</div>
+<p class="font-body-supporting text-body-supporting text-text-secondary mt-1">
+                        When active, scan history is not logged even temporarily. Best for handling sensitive or proprietary codes.
+                    </p>
+</div>
+</label>
+<!-- Automatically Save Scans -->
+<label class="bg-surface-primary border border-divider rounded-[20px] p-stack-md flex items-start gap-stack-md cursor-pointer hover:bg-surface-container-low transition-colors duration-200">
+<div class="p-2 bg-surface-secondary rounded-xl text-primary">
+<span class="material-symbols-outlined">save</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center">
+<span class="font-card-title text-card-title text-text-primary">Automatically save scans</span>
+<div class="relative inline-block w-10 h-6 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="sr-only" id="save_toggle" name="toggle" type="checkbox"/>
+<div class="block bg-primary w-10 h-6 rounded-full transition-colors duration-200" id="save_bg"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ease-in-out translate-x-4" id="save_dot"></div>
+</div>
+</div>
+<p class="font-body-supporting text-body-supporting text-text-secondary mt-1">
+                        Conveniently store detected links and info in your Library. Uncheck to manually choose what to keep.
+                    </p>
+</div>
+</label>
+<h3 class="font-section-title text-section-title text-text-primary mt-stack-lg mb-stack-sm">Data Management</h3>
+<!-- Clear Scan History (Destructive) -->
+<button class="w-full bg-surface-primary border border-divider rounded-[20px] p-stack-md flex items-start gap-stack-md text-left active:scale-[0.98] transition-transform duration-150">
+<div class="p-2 bg-error-container rounded-xl text-critical">
+<span class="material-symbols-outlined">delete_forever</span>
+</div>
+<div class="flex-1">
+<span class="font-card-title text-card-title text-critical">Clear scan history</span>
+<p class="font-body-supporting text-body-supporting text-text-secondary mt-1">
+                        Permanently delete all records from your local library. This action is irreversible and final.
+                    </p>
+</div>
+</button>
+<!-- Visual Decorative Element -->
+<div class="relative w-full h-40 mt-stack-lg rounded-[20px] overflow-hidden">
+<div class="absolute inset-0 bg-primary opacity-5"></div>
+
+<div class="absolute inset-0 flex flex-col items-center justify-center p-stack-lg text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-size: 32px;">verified_user</span>
+<p class="font-body-supporting text-body-supporting text-primary font-medium">Your data remains encrypted and anonymous at all times.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (JSON Mapping: BottomNavBar) -->
+<!-- Active State: Settings -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low dark:bg-surface-container-lowest border-t border-divider dark:border-outline-variant">
+<!-- Scan Tab -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 transition-transform duration-150 active:scale-95 hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact">Scan</span>
+</button>
+<!-- Library Tab -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 transition-transform duration-150 active:scale-95 hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</button>
+<!-- Settings Tab (Active) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 transition-transform duration-150 active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions for toggles
+        function setupToggle(toggleId, bgId, dotId) {
+            const container = document.getElementById(toggleId).parentElement.parentElement;
+            const checkbox = document.getElementById(toggleId);
+            const bg = document.getElementById(bgId);
+            const dot = document.getElementById(dotId);
+
+            container.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isChecked = checkbox.checked;
+                checkbox.checked = !isChecked;
+                
+                if (checkbox.checked) {
+                    bg.classList.remove('bg-outline-variant');
+                    bg.classList.add('bg-primary');
+                    dot.classList.add('translate-x-4');
+                } else {
+                    bg.classList.add('bg-outline-variant');
+                    bg.classList.remove('bg-primary');
+                    dot.classList.remove('translate-x-4');
+                }
+            });
+        }
+
+        setupToggle('incognito_toggle', 'incognito_bg', 'incognito_dot');
+        setupToggle('save_toggle', 'save_bg', 'save_dot');
+    </script>
+</body></html>

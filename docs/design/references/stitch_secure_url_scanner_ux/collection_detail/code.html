@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Event Contacts | ScanWise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9faf8",
+                        "critical": "#B43A3A",
+                        "inverse-on-surface": "#f0f1ef",
+                        "inverse-primary": "#89d5ba",
+                        "positive": "#287A55",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-tint": "#166b55",
+                        "surface-container": "#edeeec",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#2d6485",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "on-tertiary-container": "#b3dfff",
+                        "inverse-surface": "#2e3130",
+                        "outline": "#6f7974",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1b",
+                        "outline-variant": "#bec9c3",
+                        "tertiary": "#0a4c6c",
+                        "primary-fixed-dim": "#89d5ba",
+                        "tertiary-fixed": "#c8e6ff",
+                        "secondary-container": "#d2e4dd",
+                        "primary-container": "#176b55",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dad8",
+                        "text-secondary": "#646B67",
+                        "on-primary-fixed-variant": "#00513f",
+                        "surface-bright": "#f9faf8",
+                        "divider": "#E2E6E2",
+                        "on-surface": "#191c1b",
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "caution": "#A66610",
+                        "surface-container-low": "#f3f4f2",
+                        "on-surface-variant": "#3f4944",
+                        "on-error-container": "#93000a",
+                        "secondary": "#51625d",
+                        "background": "#f9faf8",
+                        "primary-fixed": "#a4f2d6",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "on-tertiary-fixed": "#001e2e",
+                        "text-primary": "#161A18",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d5e6e0",
+                        "surface-variant": "#e2e3e1",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "surface-container-high": "#e7e8e6",
+                        "on-primary-container": "#9be9cd",
+                        "primary": "#00513f",
+                        "surface-secondary": "#F1F3F0",
+                        "surface-primary": "#FFFFFF",
+                        "on-secondary-container": "#566661",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "base": "8px",
+                        "stack-sm": "4px",
+                        "margin-horizontal": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "screen-title-mobile": ["Inter"],
+                        "body-supporting": ["Inter"],
+                        "screen-title": ["Inter"],
+                        "card-title": ["Inter"],
+                        "body-default": ["Inter"]
+                    },
+                    "fontSize": {
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9faf8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bec9c3;
+            border-radius: 10px;
+        }
+        .glass-header {
+            backdrop-filter: blur(8px);
+            background: rgba(249, 250, 248, 0.8);
+        }
+    </style>
+</head>
+<body class="text-on-surface select-none overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 glass-header flex justify-between items-center px-margin-horizontal h-16">
+<div class="flex items-center gap-base">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-container-high transition-colors" onclick="history.back()">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary">Event contacts</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors opacity-40 cursor-not-allowed group relative">
+<span class="material-symbols-outlined text-secondary">ios_share</span>
+<span class="absolute right-0 -bottom-8 hidden group-hover:block bg-inverse-surface text-inverse-on-surface text-[10px] px-2 py-1 rounded whitespace-nowrap">Coming soon</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-secondary">more_vert</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-margin-horizontal min-h-screen">
+<!-- Collection Header Card -->
+<section class="mb-stack-lg">
+<div class="bg-surface-primary rounded-[20px] p-stack-lg border border-divider shadow-sm">
+<div class="flex justify-between items-start mb-base">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-compact text-label-compact">
+                        12 Contacts
+                    </span>
+<button class="text-primary flex items-center gap-1 hover:opacity-70">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span class="font-label-compact text-label-compact">Edit</span>
+</button>
+</div>
+<h2 class="font-card-title text-card-title text-text-primary mb-2">Annual Tech Symposium 2024</h2>
+<p class="font-body-default text-body-default text-text-secondary">
+                    Contacts collected during the networking mixer and main hall sessions. Mostly industry leaders and potential partners.
+                </p>
+<div class="mt-stack-lg flex gap-gutter">
+<div class="flex flex-col">
+<span class="font-label-compact text-label-compact text-text-secondary uppercase tracking-wider">Created</span>
+<span class="font-body-supporting text-body-supporting">Oct 12, 2024</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-compact text-label-compact text-text-secondary uppercase tracking-wider">Visibility</span>
+<span class="font-body-supporting text-body-supporting flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span> Private
+                        </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Controls Section -->
+<section class="mb-stack-lg space-y-stack-md">
+<!-- Search Bar -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-secondary text-[20px] group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="w-full bg-surface-secondary border-none rounded-[20px] pl-12 pr-4 py-3 font-body-default text-on-surface focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search contacts..." type="text"/>
+</div>
+<!-- Chips / Sort Filters -->
+<div class="flex items-center gap-base overflow-x-auto pb-2 custom-scrollbar">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-compact text-label-compact whitespace-nowrap shadow-sm">
+                    All Contacts
+                </button>
+<button class="bg-surface-secondary text-text-secondary px-4 py-2 rounded-full font-label-compact text-label-compact whitespace-nowrap hover:bg-surface-container-high transition-colors">
+                    Recently Added
+                </button>
+<button class="bg-surface-secondary text-text-secondary px-4 py-2 rounded-full font-label-compact text-label-compact whitespace-nowrap hover:bg-surface-container-high transition-colors">
+                    By Company
+                </button>
+<button class="bg-surface-secondary text-text-secondary px-4 py-2 rounded-full font-label-compact text-label-compact whitespace-nowrap hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px] align-middle mr-1">sort</span> Sort
+                </button>
+</div>
+</section>
+<!-- Contacts List -->
+<section class="space-y-stack-md">
+<!-- Contact Record 1 -->
+<div class="bg-surface-primary rounded-[20px] p-4 border border-divider flex items-center gap-4 active:scale-[0.98] transition-transform">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged woman with a friendly smile, wearing business casual attire. The lighting is soft and natural, against a clean, minimalist office background that fits the professional, corporate aesthetic. The color palette is composed of soft greens and neutral greys, maintaining a calm and intelligent atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA5wQjedZee1fPrcOau7dRW2xABLHzCCeZVXEQQTokiOjAOdHeVORBTiDmyk9vuNVP9rC0yrX7172LSpQcnuw5SXpxOifb548kGYnqi2dTbv4tqCqb853hPEvHJVvhgYJ5igIGU3IVRohvnHKlxz4XVvVMl-crNYWUUR54n2vfVs4rQV8lQo32fAXU0TrBS0NlhRwQuPvxYGr0xn9ZxOP2STasnaS0SjwX2BFNuCLLxJTB4JilZcZvaw"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-card-title text-card-title truncate">Elena Rodriguez</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">CTO @ InnovateFlow</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40">chevron_right</span>
+</div>
+<!-- Contact Record 2 -->
+<div class="bg-surface-primary rounded-[20px] p-4 border border-divider flex items-center gap-4 active:scale-[0.98] transition-transform">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">
+                    MK
+                </div>
+<div class="flex-1 min-w-0">
+<h3 class="font-card-title text-card-title truncate">Marcus Knight</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">Senior Architect @ Skyward</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40">chevron_right</span>
+</div>
+<!-- Contact Record 3 -->
+<div class="bg-surface-primary rounded-[20px] p-4 border border-divider flex items-center gap-4 active:scale-[0.98] transition-transform">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A crisp portrait of a young entrepreneur in a modern, bright co-working space with large windows. The style is restrained sophistication with a focus on high-key lighting. The character is looking directly at the camera with a confident expression. The surrounding colors are pristine whites and muted earth tones, suggesting a calm intelligence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK9HhuVYaGqL35xnTgzh5koGkWgnTvuJ8k84UlFllSAuxZp4unDIsjizdTsCSVfwKEKLmqwFE9T4LCYGQhWfX_GC7hYsKE2lmM6_enNDfIuIuomkV1TWkA0e6-K_0mUIDDdU8iFTNrzPH5jOJLhhrvYwtyX8KWSI18sLC_MzMlRoydgOV-kzrBUoWEWyqY7T5KkJFu_3aP63mJzxfZ0kuI0uOTTRxGvWki0iSbr2JFN1WSpox-IDZDsA"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-card-title text-card-title truncate">Sarah Jenkins</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">Product Lead @ NexusCore</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="material-symbols-outlined text-critical text-[18px]">security</span>
+<span class="material-symbols-outlined text-secondary opacity-40 mt-1">chevron_right</span>
+</div>
+</div>
+<!-- Contact Record 4 -->
+<div class="bg-surface-primary rounded-[20px] p-4 border border-divider flex items-center gap-4 active:scale-[0.98] transition-transform">
+<div class="w-12 h-12 rounded-full bg-primary-fixed-dim flex items-center justify-center text-primary font-bold">
+                    JL
+                </div>
+<div class="flex-1 min-w-0">
+<h3 class="font-card-title text-card-title truncate">Julian Leclair</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">Venture Analyst @ GreenCap</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40">chevron_right</span>
+</div>
+<!-- Contact Record 5 -->
+<div class="bg-surface-primary rounded-[20px] p-4 border border-divider flex items-center gap-4 active:scale-[0.98] transition-transform opacity-60">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">person_off</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-card-title text-card-title truncate">Anonymous Lead</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">Incomplete capture</p>
+</div>
+<span class="material-symbols-outlined text-secondary opacity-40">chevron_right</span>
+</div>
+</section>
+<!-- Empty State/Load More Placeholder -->
+<div class="mt-stack-lg flex flex-col items-center py-stack-lg">
+<p class="font-body-supporting text-body-supporting text-text-secondary text-center max-w-[240px]">
+                Showing 5 of 12 contacts collected. Scroll to load more from the local library.
+            </p>
+<button class="mt-base text-primary font-label-compact text-label-compact hover:underline">
+                Load All
+            </button>
+</div>
+</main>
+<!-- Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low border-t border-divider">
+<button class="flex flex-col items-center justify-center text-secondary px-5 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact mt-1">Scan</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="font-label-compact text-label-compact mt-1">Library</span>
+</button>
+<button class="flex flex-col items-center justify-center text-secondary px-5 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-compact text-label-compact mt-1">Settings</span>
+</button>
+</nav>
+<!-- Simple Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ripple effect or state handling can go here
+            const listItems = document.querySelectorAll('.active\\:scale-\\[0\\.98\\]');
+            listItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Feedback handled by tailwind classes
+                    console.log('Record selected');
+                });
+            });
+
+            // Smooth scroll for the horizontal filter chips
+            const chipContainer = document.querySelector('.overflow-x-auto');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            chipContainer.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - chipContainer.offsetLeft;
+                scrollLeft = chipContainer.scrollLeft;
+            });
+            chipContainer.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+            chipContainer.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+            chipContainer.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - chipContainer.offsetLeft;
+                const walk = (x - startX) * 2;
+                chipContainer.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
+</body></html>

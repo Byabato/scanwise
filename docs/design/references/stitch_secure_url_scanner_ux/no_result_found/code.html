@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#094c6b",
+                    "on-secondary-container": "#566661",
+                    "positive": "#287A55",
+                    "on-primary-fixed-variant": "#00513f",
+                    "inverse-primary": "#89d5ba",
+                    "outline": "#6f7974",
+                    "tertiary-fixed": "#c8e6ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1b",
+                    "surface-container-highest": "#e2e3e1",
+                    "background": "#f9faf8",
+                    "on-error-container": "#93000a",
+                    "caution": "#A66610",
+                    "tertiary-fixed-dim": "#99cdf2",
+                    "on-error": "#ffffff",
+                    "surface-secondary": "#F1F3F0",
+                    "on-surface-variant": "#3f4944",
+                    "text-secondary": "#646B67",
+                    "surface-container": "#edeeec",
+                    "on-secondary-fixed-variant": "#3a4a45",
+                    "surface-container-low": "#f3f4f2",
+                    "primary-fixed-dim": "#89d5ba",
+                    "secondary": "#51625d",
+                    "primary-fixed": "#a4f2d6",
+                    "tertiary-container": "#2d6485",
+                    "on-primary-container": "#9be9cd",
+                    "secondary-fixed-dim": "#b9cac4",
+                    "error-container": "#ffdad6",
+                    "surface": "#f9faf8",
+                    "surface-variant": "#e2e3e1",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d9dad8",
+                    "surface-bright": "#f9faf8",
+                    "inverse-surface": "#2e3130",
+                    "on-tertiary-fixed": "#001e2e",
+                    "text-primary": "#161A18",
+                    "surface-primary": "#FFFFFF",
+                    "on-surface": "#191c1b",
+                    "primary": "#00513f",
+                    "outline-variant": "#bec9c3",
+                    "secondary-fixed": "#d5e6e0",
+                    "on-tertiary-container": "#b3dfff",
+                    "on-secondary-fixed": "#0f1e1a",
+                    "surface-tint": "#166b55",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#0a4c6c",
+                    "inverse-on-surface": "#f0f1ef",
+                    "primary-container": "#176b55",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#002117",
+                    "divider": "#E2E6E2",
+                    "secondary-container": "#d2e4dd",
+                    "critical": "#B43A3A",
+                    "surface-container-high": "#e7e8e6",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "12px",
+                    "margin-horizontal": "20px",
+                    "stack-sm": "4px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "screen-title": ["Inter"],
+                    "label-compact": ["Inter"],
+                    "screen-title-mobile": ["Inter"],
+                    "body-default": ["Inter"],
+                    "section-title": ["Inter"],
+                    "card-title": ["Inter"],
+                    "body-supporting": ["Inter"]
+            },
+            "fontSize": {
+                    "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9faf8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scan-line {
+            animation: scan 3s ease-in-out infinite;
+        }
+        @keyframes scan {
+            0%, 100% { top: 0%; opacity: 0; }
+            10%, 90% { opacity: 1; }
+            50% { top: 100%; }
+        }
+        .pulse-soft {
+            animation: pulse-soft 2s ease-in-out infinite;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim flex justify-between items-center w-full px-margin-horizontal h-16 sticky top-0 z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">ScanWise</h1>
+</div>
+</header>
+<!-- Main Content: Empty State Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-horizontal pb-24">
+<!-- Illustration Container -->
+<div class="relative w-full max-w-[280px] aspect-square flex items-center justify-center mb-stack-lg">
+<!-- Background Decorative Shape -->
+<div class="absolute inset-0 bg-secondary-container opacity-20 rounded-full blur-3xl"></div>
+<!-- Central "Empty Card" Element -->
+<div class="relative z-10 w-48 h-64 bg-surface-primary border border-divider rounded-[20px] shadow-sm flex flex-col items-center justify-center p-6 overflow-hidden">
+<!-- Decorative Skeleton Content -->
+<div class="w-full h-2 bg-surface-container rounded-full mb-3"></div>
+<div class="w-3/4 h-2 bg-surface-container rounded-full mb-3"></div>
+<!-- The "Magnifying Glass" Icon -->
+<div class="mt-4 text-secondary opacity-40">
+<span class="material-symbols-outlined text-[84px] leading-none" style="font-variation-settings: 'wght' 200;">search</span>
+</div>
+<div class="mt-8 w-1/2 h-2 bg-surface-container rounded-full"></div>
+</div>
+<!-- Floating Warning Marker -->
+<div class="absolute top-10 right-10 bg-caution text-white p-2 rounded-full shadow-lg z-20 pulse-soft">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-stack-md max-w-[320px]">
+<h2 class="font-screen-title-mobile text-screen-title-mobile text-text-primary">No code detected</h2>
+<p class="font-body-default text-body-default text-text-secondary">
+                We couldn't find a valid QR code or barcode in this image. Make sure the code is clear and well-lit.
+            </p>
+</div>
+<!-- Action Buttons -->
+<div class="w-full max-w-[340px] mt-stack-lg space-y-stack-md">
+<button class="w-full py-4 bg-primary text-on-primary font-semibold rounded-[16px] transition-transform active:scale-95 shadow-sm">
+                Try another image
+            </button>
+<button class="w-full py-4 bg-transparent text-secondary font-medium rounded-[16px] hover:bg-surface-container-high transition-colors">
+                Dismiss
+            </button>
+</div>
+<!-- Hint Section -->
+<div class="mt-12 bg-surface-secondary p-stack-md rounded-[20px] border border-divider flex items-start gap-4 w-full max-w-[340px]">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">lightbulb</span>
+<div class="flex flex-col">
+<span class="font-card-title text-card-title text-text-primary">Scanning Tip</span>
+<span class="font-body-supporting text-body-supporting text-text-secondary">Avoid glare and ensure the entire code is visible within the image frame.</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Suppressed for focused task, but kept as per Shared Components JSON structure if needed for context, though "Shell Visibility Rule" suggests hiding it for sub-pages. Re-rendering here as "active scan" intent context) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe border-t border-divider bg-surface-container-low dark:bg-surface-container-lowest">
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 Active: scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for primary button
+        document.querySelector('button.bg-primary').addEventListener('click', function() {
+            // Simulated gallery open
+            this.style.opacity = '0.7';
+            setTimeout(() => {
+                this.style.opacity = '1';
+            }, 200);
+        });
+    </script>
+</body></html>

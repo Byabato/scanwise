@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "caution": "#A66610",
+                      "secondary-container": "#d2e4dd",
+                      "on-primary-fixed-variant": "#00513f",
+                      "secondary-fixed-dim": "#b9cac4",
+                      "outline": "#6f7974",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-container": "#edeeec",
+                      "on-primary-fixed": "#002117",
+                      "surface-container-highest": "#e2e3e1",
+                      "positive": "#287A55",
+                      "on-secondary-fixed": "#0f1e1a",
+                      "on-error-container": "#93000a",
+                      "text-secondary": "#646B67",
+                      "surface-dim": "#d9dad8",
+                      "surface-primary": "#FFFFFF",
+                      "surface-secondary": "#F1F3F0",
+                      "primary-fixed-dim": "#89d5ba",
+                      "on-secondary": "#ffffff",
+                      "background": "#f9faf8",
+                      "on-surface": "#191c1b",
+                      "primary": "#00513f",
+                      "tertiary-container": "#2d6485",
+                      "on-secondary-fixed-variant": "#3a4a45",
+                      "on-tertiary-container": "#b3dfff",
+                      "tertiary": "#0a4c6c",
+                      "inverse-on-surface": "#f0f1ef",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#c8e6ff",
+                      "on-tertiary-fixed-variant": "#094c6b",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#2e3130",
+                      "error-container": "#ffdad6",
+                      "text-primary": "#161A18",
+                      "primary-container": "#176b55",
+                      "on-tertiary-fixed": "#001e2e",
+                      "surface-container-low": "#f3f4f2",
+                      "primary-fixed": "#a4f2d6",
+                      "secondary": "#51625d",
+                      "tertiary-fixed-dim": "#99cdf2",
+                      "surface-variant": "#e2e3e1",
+                      "on-surface-variant": "#3f4944",
+                      "surface": "#f9faf8",
+                      "secondary-fixed": "#d5e6e0",
+                      "surface-container-high": "#e7e8e6",
+                      "outline-variant": "#bec9c3",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#f9faf8",
+                      "on-secondary-container": "#566661",
+                      "inverse-primary": "#89d5ba",
+                      "divider": "#E2E6E2",
+                      "critical": "#B43A3A",
+                      "on-primary-container": "#9be9cd",
+                      "surface-tint": "#166b55",
+                      "on-background": "#191c1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-lg": "24px",
+                      "margin-horizontal": "20px",
+                      "stack-md": "12px",
+                      "base": "8px",
+                      "gutter": "16px",
+                      "stack-sm": "4px"
+              },
+              "fontFamily": {
+                      "screen-title": ["Inter"],
+                      "body-supporting": ["Inter"],
+                      "screen-title-mobile": ["Inter"],
+                      "label-compact": ["Inter"],
+                      "body-default": ["Inter"],
+                      "section-title": ["Inter"],
+                      "card-title": ["Inter"]
+              },
+              "fontSize": {
+                      "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f9faf8;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bottom-sheet-backdrop {
+            background: rgba(25, 28, 27, 0.24);
+            backdrop-filter: blur(4px);
+        }
+        .sheet-container {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-on-surface">
+<!-- Top App Bar (Shared Component Anchor) -->
+<header class="bg-surface dark:bg-surface-dim flex justify-between items-center w-full px-margin-horizontal h-16 docked full-width top-0 z-10 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">ScanWise</h1>
+</div>
+<button class="hover:bg-surface-container-high dark:hover:bg-surface-container-highest p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-secondary" data-icon="search">search</span>
+</button>
+</header>
+<!-- Main Content Canvas (Background Context) -->
+<main class="flex-1 px-margin-horizontal pt-stack-lg">
+<div class="space-y-stack-lg">
+<!-- Calendar Preview (Contextual Background) -->
+<div class="bg-surface-primary border border-divider rounded-[20px] overflow-hidden">
+<div class="w-full h-48 bg-cover bg-center" data-alt="A professional aerial view of the University of Dar es Salaam campus, showing modern architecture and lush tropical greenery under a clear, bright blue sky. The lighting is crisp and natural, reflecting a high-key, modern light-mode aesthetic with soft shadows. The overall mood is academic, progressive, and serene, utilizing a clean palette of whites, greens, and sky blues." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDiraDVRZ3_a8PGLI9CCY_eFJEycQbbMqljTksTzgI2oIdUKURJs6pG8jo-4oqY-cyJfTy2T15cqizxIfIr5aWQFQQ5ghuicWdHhBx_MxNrpS9v2U_hzMt9xgdqMX7uRtqAr2VJdwHdtcHpn0X5yM5J9jHzUpHYZF-9eHN4B4A62uY4Y8PfhvVUrcEwqP764ELu0Hhyvd7ouze4p5hGSoBj9Ondjg4xeS-QcCecbZHb1hYUlLXwWdtl-A')"></div>
+<div class="p-5">
+<h2 class="font-section-title text-section-title text-text-primary mb-1">Campus Events</h2>
+<p class="font-body-default text-body-default text-text-secondary">Discover upcoming technology showcases and workshops.</p>
+</div>
+</div>
+<!-- Bento Layout Grid for Secondary Content -->
+<div class="grid grid-cols-2 gap-gutter">
+<div class="bg-surface-secondary p-5 rounded-[20px] flex flex-col gap-base">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+<h3 class="font-card-title text-card-title">Innovation Hub</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Explore latest tech labs.</p>
+</div>
+<div class="bg-surface-secondary p-5 rounded-[20px] flex flex-col gap-base">
+<span class="material-symbols-outlined text-tertiary" data-icon="groups">groups</span>
+<h3 class="font-card-title text-card-title">Community</h3>
+<p class="font-body-supporting text-body-supporting text-text-secondary">Network with peers.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Sheet UI -->
+<div class="fixed inset-0 z-[60] bottom-sheet-backdrop flex flex-col justify-end" id="bottom-sheet-overlay">
+<!-- Interactive Layer -->
+<div class="absolute inset-0" onclick="toggleSheet(false)"></div>
+<!-- Bottom Sheet Surface -->
+<div class="sheet-container relative w-full bg-surface-primary rounded-t-[28px] max-h-[90vh] overflow-y-auto shadow-2xl border-t border-divider transform translate-y-0">
+<!-- Handle -->
+<div class="w-full flex justify-center pt-3 pb-2">
+<div class="w-8 h-1 rounded-full bg-surface-variant"></div>
+</div>
+<!-- Content Container -->
+<div class="px-margin-horizontal pb-safe pt-stack-md flex flex-col gap-stack-lg">
+<!-- Badge and Header -->
+<div class="flex flex-col gap-stack-sm">
+<div class="inline-flex">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-compact text-label-compact">Innovation Event</span>
+</div>
+<h2 class="font-screen-title-mobile text-screen-title-mobile text-text-primary leading-tight">NEBO Innovation Week</h2>
+</div>
+<!-- Info Grid -->
+<div class="flex flex-col gap-stack-md">
+<!-- Date Row -->
+<div class="flex items-start gap-gutter">
+<div class="w-10 h-10 flex-shrink-0 bg-surface-secondary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+</div>
+<div class="flex flex-col">
+<span class="font-card-title text-card-title text-text-primary">Oct 12 - Oct 16, 2024</span>
+<span class="font-body-supporting text-body-supporting text-text-secondary">Full day event</span>
+</div>
+</div>
+<!-- Location Row -->
+<div class="flex items-start gap-gutter">
+<div class="w-10 h-10 flex-shrink-0 bg-surface-secondary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="font-card-title text-card-title text-text-primary">UDSM Campus</span>
+<span class="font-body-supporting text-body-supporting text-text-secondary">Dar es Salaam, Tanzania</span>
+</div>
+</div>
+</div>
+<!-- Map Component (Static Placeholder with Stylized Feel) -->
+<div class="relative w-full h-32 rounded-[20px] overflow-hidden bg-surface-secondary border border-divider">
+<div class="w-full h-full bg-cover bg-center grayscale-[20%] opacity-80" data-location="UDSM Campus, Dar es Salaam" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPt-9LOadCv0G-K_18X_WZ-5hYp1iYXHAYsP1PFwaNjanKVIbtGH403rySrxpkFF5DGBe7mlRLTUdMajuUf_7V8dlBqVtnQFrwZwuds8dZvTRnrRRntQs8DfRsGUM4ZrgOZVO7Anu91sU2n9hlLL9OZgFSa1BJ5CVQtA76W768VGyMCVSiZEzS_pRTEvKw-QrVF_yIRf9KeDAnX9ZurGVCodVafEqJZiUJTtQq1s5SWQFMi-SK0u_aLQ')"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-12 h-12 bg-primary/20 rounded-full animate-pulse flex items-center justify-center">
+<span class="material-symbols-outlined text-primary fill-current" data-icon="push_pin" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-base">
+<h3 class="font-section-title text-section-title text-text-primary">About this week</h3>
+<p class="font-body-default text-body-default text-text-secondary leading-relaxed">
+                        A week-long showcase of technology and research breakthroughs. Join leading researchers and innovators at the University of Dar es Salaam to explore the future of NEBO technology and its local impact.
+                    </p>
+</div>
+<!-- Actions Section -->
+<div class="flex flex-col gap-gutter mt-2 pb-8">
+<!-- Primary Action -->
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-section-title h-[56px] rounded-[16px] flex items-center justify-center gap-base transition-all duration-200 active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                        Add to calendar
+                    </button>
+<!-- Secondary Row -->
+<div class="flex gap-gutter">
+<button class="flex-1 bg-surface-secondary text-primary font-card-title h-[52px] rounded-[16px] flex items-center justify-center gap-base border border-outline-variant hover:bg-secondary-fixed transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+                            Share
+                        </button>
+<button class="flex-1 bg-surface-secondary text-primary font-card-title h-[52px] rounded-[16px] flex items-center justify-center gap-base border border-outline-variant hover:bg-secondary-fixed transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+                            Save to Library
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Shared Component Anchor) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low dark:bg-surface-container-lowest border-t border-divider dark:border-outline-variant">
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact mt-1">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="font-label-compact text-label-compact mt-1">Library</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact mt-1">Settings</span>
+</div>
+</nav>
+<script>
+        function toggleSheet(show) {
+            const overlay = document.getElementById('bottom-sheet-overlay');
+            const sheet = overlay.querySelector('.sheet-container');
+            
+            if (show) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    sheet.style.transform = 'translateY(0)';
+                    overlay.style.opacity = '1';
+                }, 10);
+            } else {
+                sheet.style.transform = 'translateY(100%)';
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        // Initialize state
+        document.addEventListener('DOMContentLoaded', () => {
+            // Sheet is shown by default for this prompt
+            // To close: toggleSheet(false)
+        });
+    </script>
+</body></html>

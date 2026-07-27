@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>ScanWise - Scanner Detected</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+        }
+        
+        .scanning-frame-corner {
+            width: 32px;
+            height: 32px;
+            border-color: #287A55; /* brand positive green */
+            border-width: 3px;
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Pulse animation for the tightened frame */
+        @keyframes frame-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        .active-frame {
+            animation: frame-pulse 2s infinite ease-in-out;
+        }
+
+        /* Bottom sheet slide-up animation */
+        @keyframes slide-up {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Camera overlay transition */
+        .camera-dimmer {
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: background-color 0.5s ease;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#bec9c3",
+                        "on-tertiary-container": "#b3dfff",
+                        "caution": "#A66610",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "on-primary-container": "#9be9cd",
+                        "surface-primary": "#FFFFFF",
+                        "inverse-surface": "#2e3130",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-secondary": "#F1F3F0",
+                        "background": "#f9faf8",
+                        "on-tertiary-fixed": "#001e2e",
+                        "tertiary": "#0a4c6c",
+                        "on-primary-fixed-variant": "#00513f",
+                        "positive": "#287A55",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "divider": "#E2E6E2",
+                        "on-secondary": "#ffffff",
+                        "text-primary": "#161A18",
+                        "tertiary-fixed": "#c8e6ff",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "surface-bright": "#f9faf8",
+                        "surface": "#f9faf8",
+                        "secondary": "#51625d",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary-fixed": "#002117",
+                        "outline": "#6f7974",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "on-surface-variant": "#3f4944",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-surface": "#191c1b",
+                        "primary": "#00513f",
+                        "surface-dim": "#d9dad8",
+                        "surface-tint": "#166b55",
+                        "primary-container": "#176b55",
+                        "secondary-fixed": "#d5e6e0",
+                        "text-secondary": "#646B67",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "on-secondary-container": "#566661",
+                        "surface-container-low": "#f3f4f2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#edeeec",
+                        "on-background": "#191c1b",
+                        "tertiary-container": "#2d6485",
+                        "critical": "#B43A3A",
+                        "secondary-container": "#d2e4dd",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#89d5ba",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#89d5ba",
+                        "surface-container-high": "#e7e8e6",
+                        "primary-fixed": "#a4f2d6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "stack-md": "12px",
+                        "stack-sm": "4px",
+                        "margin-horizontal": "20px",
+                        "base": "8px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "card-title": ["Inter"],
+                        "body-default": ["Inter"],
+                        "screen-title": ["Inter"],
+                        "screen-title-mobile": ["Inter"],
+                        "section-title": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "body-supporting": ["Inter"]
+                    },
+                    "fontSize": {
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-default text-text-primary antialiased min-h-screen overflow-hidden">
+<!-- Camera Viewport (Background) -->
+<div class="fixed inset-0 z-0">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A cinematic, high-resolution close-up shot of a modern, sleek white electronics product box sitting on a polished wooden table. The lighting is bright and airy, reflecting a clean corporate aesthetic. Soft natural sunlight from a nearby window creates gentle shadows. The focal point is a crisp QR code printed on the side of the box, visible through a slight Gaussian blur to simulate a camera lens effect. The overall mood is sophisticated and technologically modern." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDja5X3XR0E6VehplaJq9xCRBG858lfxuxRJTn718S9_Xks8tWHBfzVors0eUeoPeAPB0EpcZ-Ola577avvgLYw3G7mmqacmhD8B-iKaNvmTQZDva9nL2eIRpriX0aK4VzqYHHD5XhRza-BG1BOT6nJt4PQRgvf65sQ0WWx6lqlISkHxF8kGRQdegHFOoQ_kJaFtHYPp7T2EOALk-C3FJHnNvL3-c4i7UEpsa-laz1KtNinh_D7F563Zg')"></div>
+<!-- Camera Dimmer Overlay (Detected State) -->
+<div class="absolute inset-0 camera-dimmer z-10"></div>
+</div>
+<!-- Top App Bar (Shared Component Implementation) -->
+<header class="fixed top-0 left-0 w-full z-40 bg-transparent h-16 px-margin-horizontal flex justify-between items-center">
+<!-- Glassmorphism Container for Header -->
+<div class="absolute inset-0 bg-white/20 backdrop-blur-md"></div>
+<div class="relative flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-text-primary">ScanWise</h1>
+</div>
+<div class="relative">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined text-text-primary">flashlight_on</span>
+</button>
+</div>
+</header>
+<!-- Scanning Interaction Area -->
+<div class="fixed inset-0 z-20 flex flex-col items-center justify-center pointer-events-none">
+<!-- Scanning Frame (Tightened & Highlighted) -->
+<div class="relative w-56 h-56 active-frame">
+<!-- Top Left -->
+<div class="scanning-frame-corner top-0 left-0 border-t border-l rounded-tl-[20px]"></div>
+<!-- Top Right -->
+<div class="scanning-frame-corner top-0 right-0 border-t border-r rounded-tr-[20px]"></div>
+<!-- Bottom Left -->
+<div class="scanning-frame-corner bottom-0 left-0 border-b border-l rounded-bl-[20px]"></div>
+<!-- Bottom Right -->
+<div class="scanning-frame-corner bottom-0 right-0 border-b border-r rounded-br-[20px]"></div>
+<!-- Scanning Line Animation -->
+<div class="absolute top-0 left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-positive to-transparent opacity-60 translate-y-28 blur-[1px]"></div>
+</div>
+<!-- Instructions hidden as requested -->
+</div>
+<!-- Result Bottom Sheet (Partially Raised) -->
+<div class="fixed inset-x-0 bottom-20 z-50 animate-slide-up flex flex-col pointer-events-auto">
+<!-- Handlebar area -->
+<div class="w-full flex justify-center pb-2">
+<div class="w-12 h-1.5 bg-outline-variant/40 rounded-full"></div>
+</div>
+<!-- Sheet Body -->
+<div class="bg-surface-primary rounded-t-[28px] border-x border-t border-divider p-margin-horizontal pb-10 shadow-[0_-8px_24px_rgba(0,0,0,0.08)]">
+<div class="flex flex-col gap-stack-lg">
+<!-- Badge and Title -->
+<div class="flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2">
+<span class="bg-surface-secondary text-text-secondary px-3 py-1 rounded-full font-label-compact text-label-compact">WEBSITE LINK</span>
+<div class="flex items-center gap-1 text-positive">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-compact text-label-compact uppercase tracking-wider">Secure</span>
+</div>
+</div>
+<h2 class="font-section-title text-section-title text-text-primary">www.tech-nexus.com/setup</h2>
+</div>
+<!-- Detection Details Card -->
+<div class="bg-surface-secondary border border-divider rounded-xl p-4 flex gap-4 items-start">
+<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center shrink-0 border border-divider">
+<span class="material-symbols-outlined text-primary">language</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-card-title text-card-title">Official Product Portal</p>
+<p class="font-body-supporting text-body-supporting text-text-secondary">This URL belongs to TechNexus verified domains and is safe to navigate. Verified 2m ago.</p>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-2xl font-section-title transition-transform active:scale-[0.98]">
+                    Open Website
+                </button>
+<!-- Secondary Actions -->
+<div class="flex gap-stack-md">
+<button class="flex-1 bg-secondary-container text-on-secondary-container py-3 rounded-2xl font-label-compact flex items-center justify-center gap-2 hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">folder_open</span>
+                        Save to Library
+                    </button>
+<button class="flex-1 bg-surface-secondary text-text-secondary py-3 rounded-2xl font-label-compact flex items-center justify-center gap-2 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                        Share
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Shared Component Implementation) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low border-t border-divider">
+<!-- Scan Tab (Active) -->
+<button class="flex flex-col items-center justify-center px-5 py-1 Active: scale-95 transition-transform duration-150">
+<div class="bg-secondary-container text-on-secondary-container rounded-full px-5 py-1 mb-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+</div>
+<span class="font-label-compact text-label-compact text-primary">Scan</span>
+</button>
+<!-- Library Tab -->
+<button class="flex flex-col items-center justify-center px-5 py-1 text-secondary hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined mb-1">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</button>
+<!-- Settings Tab -->
+<button class="flex flex-col items-center justify-center px-5 py-1 text-secondary hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</button>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Haptic-like feedback on button press
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (window.navigator.vibrate) {
+                        window.navigator.vibrate(10);
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

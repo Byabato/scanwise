@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9faf8;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bottom-sheet-transition {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        .tap-highlight-none {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Scanning animation frame */
+        .scan-corner {
+            width: 32px;
+            height: 32px;
+            border-color: #00513f;
+            position: absolute;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "caution": "#A66610",
+                        "secondary-container": "#d2e4dd",
+                        "on-primary-fixed-variant": "#00513f",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "outline": "#6f7974",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeec",
+                        "on-primary-fixed": "#002117",
+                        "surface-container-highest": "#e2e3e1",
+                        "positive": "#287A55",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#646B67",
+                        "surface-dim": "#d9dad8",
+                        "surface-primary": "#FFFFFF",
+                        "surface-secondary": "#F1F3F0",
+                        "primary-fixed-dim": "#89d5ba",
+                        "on-secondary": "#ffffff",
+                        "background": "#f9faf8",
+                        "on-surface": "#191c1b",
+                        "primary": "#00513f",
+                        "tertiary-container": "#2d6485",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "on-tertiary-container": "#b3dfff",
+                        "tertiary": "#0a4c6c",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#c8e6ff",
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3130",
+                        "error-container": "#ffdad6",
+                        "text-primary": "#161A18",
+                        "primary-container": "#176b55",
+                        "on-tertiary-fixed": "#001e2e",
+                        "surface-container-low": "#f3f4f2",
+                        "primary-fixed": "#a4f2d6",
+                        "secondary": "#51625d",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface-variant": "#3f4944",
+                        "surface": "#f9faf8",
+                        "secondary-fixed": "#d5e6e0",
+                        "surface-container-high": "#e7e8e6",
+                        "outline-variant": "#bec9c3",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f9faf8",
+                        "on-secondary-container": "#566661",
+                        "inverse-primary": "#89d5ba",
+                        "divider": "#E2E6E2",
+                        "critical": "#B43A3A",
+                        "on-primary-container": "#9be9cd",
+                        "surface-tint": "#166b55",
+                        "on-background": "#191c1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "24px",
+                        "margin-horizontal": "20px",
+                        "stack-md": "12px",
+                        "base": "8px",
+                        "gutter": "16px",
+                        "stack-sm": "4px"
+                    },
+                    "fontFamily": {
+                        "screen-title": ["Inter"],
+                        "body-supporting": ["Inter"],
+                        "screen-title-mobile": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "body-default": ["Inter"],
+                        "section-title": ["Inter"],
+                        "card-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Top App Bar (Shared Component Reference) -->
+<header class="bg-surface dark:bg-surface-dim flex justify-between items-center w-full px-margin-horizontal h-16 fixed top-0 z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">ScanWise</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200">
+<span class="material-symbols-outlined text-secondary" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Main Content Canvas (Camera Preview Simulation) -->
+<main class="flex-1 relative overflow-hidden bg-black flex items-center justify-center">
+<!-- Mock Camera Background -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-60" data-alt="A cinematic, high-resolution close-up of a blurred modern interior with soft, natural morning light filtering through a window. The aesthetic is clean, minimalist, and serene, using a color palette of soft greens, warm whites, and subtle wood tones. The focus is slightly out of focus to simulate a camera depth-of-field effect, maintaining a calm and professional atmosphere for a scanning application." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuADFupPxQGbSzD_JM6CxVJxX6i2XkLhkpWO6ATEIh0amionrE1HNgAlDViLBd6RIp33h8IeITw_FHfy4Z80ysrtvt0-c39QOu5TaxngvpqsMwX1B48ghfevuvPU_T5y5hB0x_omEapgTrcubLKSAQE_8mY5_dj-03PXG9vEau4wwyFDyqDI3-qt_XxRKu7_yoQn6xbstDAIGyAUqM-nFvpjnWa9r1XSHhPnvaPM0hidyLDu5BYKozucJw')"></div>
+</div>
+<!-- Scanning Reticle -->
+<div class="relative z-10 w-64 h-64">
+<div class="scan-corner top-0 left-0 border-t-4 border-l-4 rounded-tl-[20px]"></div>
+<div class="scan-corner top-0 right-0 border-t-4 border-r-4 rounded-tr-[20px]"></div>
+<div class="scan-corner bottom-0 left-0 border-b-4 border-l-4 rounded-bl-[20px]"></div>
+<div class="scan-corner bottom-0 right-0 border-b-4 border-r-4 rounded-br-[20px]"></div>
+<!-- Detected Marker Animation -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-12 bg-white/20 backdrop-blur-md rounded-full border border-white/30 flex items-center px-4 animate-pulse">
+<span class="material-symbols-outlined text-white mr-2" data-icon="article">article</span>
+<span class="text-white font-label-compact text-label-compact tracking-widest uppercase">Text Detected</span>
+</div>
+</div>
+</main>
+<!-- Bottom Sheet Backdrop (Dimmer) -->
+<div class="fixed inset-0 bg-black/40 z-40 backdrop-blur-[2px] transition-opacity duration-300 opacity-100" id="backdrop"></div>
+<!-- Result Bottom Sheet -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest rounded-t-[28px] bottom-sheet-transition translate-y-0 pb-safe shadow-[0_-8px_24px_rgba(0,0,0,0.1)]" id="bottomSheet">
+<!-- Handle -->
+<div class="w-full flex justify-center py-4">
+<div class="w-8 h-1 bg-outline-variant rounded-full"></div>
+</div>
+<div class="px-margin-horizontal pb-8">
+<!-- Header section -->
+<div class="flex flex-col gap-1 mb-stack-lg">
+<div class="inline-flex items-center px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full w-fit mb-2">
+<span class="material-symbols-outlined text-[16px] mr-1.5" data-icon="notes">notes</span>
+<span class="font-label-compact text-label-compact uppercase tracking-wider">Plain text</span>
+</div>
+<h2 class="font-screen-title-mobile text-screen-title-mobile text-text-primary">Scan Result</h2>
+</div>
+<!-- Content Card -->
+<div class="bg-surface-primary border border-divider rounded-[20px] p-5 mb-stack-lg">
+<p class="font-body-default text-body-default text-on-surface leading-relaxed">
+                    Note: The workshop starts at 09:00 AM. Please arrive 15 minutes early for registration.
+                </p>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-14 bg-primary text-on-primary rounded-[16px] flex items-center justify-center gap-2 font-section-title text-section-title active:scale-[0.98] transition-transform duration-100 mb-stack-md tap-highlight-none" onclick="handleCopy()">
+<span class="material-symbols-outlined" data-icon="content_copy">content_copy</span>
+                Copy text
+            </button>
+<!-- Secondary Actions Row -->
+<div class="grid grid-cols-2 gap-stack-md">
+<button class="h-12 bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed-variant rounded-[16px] flex items-center justify-center gap-2 font-label-compact text-label-compact font-semibold transition-colors active:scale-[0.98] tap-highlight-none">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+                    Share
+                </button>
+<button class="h-12 bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed-variant rounded-[16px] flex items-center justify-center gap-2 font-label-compact text-label-compact font-semibold transition-colors active:scale-[0.98] tap-highlight-none">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark_add">bookmark_add</span>
+                    Save to Library
+                </button>
+</div>
+</div>
+</div>
+<!-- Feedback Toast (Hidden by default) -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full flex items-center gap-3 transition-all duration-300 translate-y-20 opacity-0 z-[60]" id="toast">
+<span class="material-symbols-outlined text-positive" data-icon="check_circle">check_circle</span>
+<span class="font-body-supporting text-body-supporting">Text copied to clipboard</span>
+</div>
+<!-- Bottom Nav Bar (Shared Component Reference - Logic: Active="Scan") -->
+<nav class="fixed bottom-0 left-0 w-full z-30 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low dark:bg-surface-container-lowest border-t border-divider">
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high rounded-full transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</a>
+</nav>
+<script>
+        function handleCopy() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 2500);
+        }
+
+        // Gesture Simulation for Bottom Sheet
+        let startY = 0;
+        const sheet = document.getElementById('bottomSheet');
+        const backdrop = document.getElementById('backdrop');
+
+        sheet.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        });
+
+        sheet.addEventListener('touchmove', (e) => {
+            let currentY = e.touches[0].clientY;
+            let diff = currentY - startY;
+            if (diff > 0) {
+                sheet.style.transform = `translateY(${diff}px)`;
+                backdrop.style.opacity = Math.max(0, 1 - (diff / 300));
+            }
+        });
+
+        sheet.addEventListener('touchend', (e) => {
+            let currentY = e.changedTouches[0].clientY;
+            let diff = currentY - startY;
+            if (diff > 150) {
+                sheet.style.transform = `translateY(100%)`;
+                backdrop.style.opacity = '0';
+                setTimeout(() => {
+                    backdrop.style.display = 'none';
+                }, 300);
+            } else {
+                sheet.style.transform = `translateY(0px)`;
+                backdrop.style.opacity = '1';
+            }
+        });
+    </script>
+</body></html>

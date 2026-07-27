@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ScanWise - Suspicious URL Result</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bec9c3",
+                    "on-tertiary-container": "#b3dfff",
+                    "caution": "#A66610",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#b9cac4",
+                    "on-primary-container": "#9be9cd",
+                    "surface-primary": "#FFFFFF",
+                    "inverse-surface": "#2e3130",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-secondary": "#F1F3F0",
+                    "background": "#f9faf8",
+                    "on-tertiary-fixed": "#001e2e",
+                    "tertiary": "#0a4c6c",
+                    "on-primary-fixed-variant": "#00513f",
+                    "positive": "#287A55",
+                    "on-secondary-fixed": "#0f1e1a",
+                    "divider": "#E2E6E2",
+                    "on-secondary": "#ffffff",
+                    "text-primary": "#161A18",
+                    "tertiary-fixed": "#c8e6ff",
+                    "on-secondary-fixed-variant": "#3a4a45",
+                    "surface-bright": "#f9faf8",
+                    "surface": "#f9faf8",
+                    "secondary": "#51625d",
+                    "surface-variant": "#e2e3e1",
+                    "on-primary-fixed": "#002117",
+                    "outline": "#6f7974",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#99cdf2",
+                    "on-surface-variant": "#3f4944",
+                    "inverse-on-surface": "#f0f1ef",
+                    "on-surface": "#191c1b",
+                    "primary": "#00513f",
+                    "surface-dim": "#d9dad8",
+                    "surface-tint": "#166b55",
+                    "primary-container": "#176b55",
+                    "secondary-fixed": "#d5e6e0",
+                    "text-secondary": "#646B67",
+                    "surface-container-highest": "#e2e3e1",
+                    "on-tertiary-fixed-variant": "#094c6b",
+                    "on-secondary-container": "#566661",
+                    "surface-container-low": "#f3f4f2",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#edeeec",
+                    "on-background": "#191c1b",
+                    "tertiary-container": "#2d6485",
+                    "critical": "#B43A3A",
+                    "secondary-container": "#d2e4dd",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#89d5ba",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#89d5ba",
+                    "surface-container-high": "#e7e8e6",
+                    "primary-fixed": "#a4f2d6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "stack-md": "12px",
+                    "stack-sm": "4px",
+                    "margin-horizontal": "20px",
+                    "base": "8px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "card-title": ["Inter"],
+                    "body-default": ["Inter"],
+                    "screen-title": ["Inter"],
+                    "screen-title-mobile": ["Inter"],
+                    "section-title": ["Inter"],
+                    "label-compact": ["Inter"],
+                    "body-supporting": ["Inter"]
+            },
+            "fontSize": {
+                    "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9faf8;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; 
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .scanning-frame-corner {
+            width: 32px;
+            height: 32px;
+            border-color: #00513f;
+            border-width: 0;
+            position: absolute;
+        }
+        .corner-tl { top: 0; left: 0; border-top-width: 3px; border-left-width: 3px; border-top-left-radius: 20px; }
+        .corner-tr { top: 0; right: 0; border-top-width: 3px; border-right-width: 3px; border-top-right-radius: 20px; }
+        .corner-bl { bottom: 0; left: 0; border-bottom-width: 3px; border-left-width: 3px; border-bottom-left-radius: 20px; }
+        .corner-br { bottom: 0; right: 0; border-bottom-width: 3px; border-right-width: 3px; border-bottom-right-radius: 20px; }
+        
+        .pulse-animation {
+            animation: scan-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes scan-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(0.98); opacity: 0.7; }
+        }
+
+        .bottom-sheet-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .bottom-sheet {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-margin-horizontal h-16 bg-surface dark:bg-surface-dim z-40 fixed top-0 left-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary">ScanWise</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-secondary" data-icon="help_outline">help_outline</span>
+</button>
+</header>
+<!-- Main Canvas: Simulated Camera Feed -->
+<main class="flex-grow relative mt-16 pb-20">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-neutral-900 overflow-hidden relative">
+<!-- Decorative Blurred Placeholder for Camera Feed -->
+<div class="w-full h-full bg-cover bg-center opacity-60" data-alt="Camera view of workspace" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPeAMlzf3syhLI65CXjZUNJtGwUaF_qwxph6yQUzPlPbHli3cU03Zs-M3zhg7kjTF1KobDHupgApvHcigEP25wBjqaG68MsLY1gJvU_qMHWoTEWUJ9seNwg__2YmaF6YuGNOVDd7xjyOGS9CPXaBfiiu8oRhJ09yE8YELV7A3GoVDfU_LPuzucCBsikWTgL8REr-3IoPuWKjKcrTq08rKRb-K8AqqUDJJnsaoxdtF6Rcg1JdsQo0ZQHw')"></div>
+<!-- Scanning UI Elements -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-64 h-64 pulse-animation">
+<div class="scanning-frame-corner corner-tl"></div>
+<div class="scanning-frame-corner corner-tr"></div>
+<div class="scanning-frame-corner corner-bl"></div>
+<div class="scanning-frame-corner corner-br"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-primary/10 rounded-xl border border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary opacity-50 text-4xl" data-icon="qr_code_2">qr_code_2</span>
+</div>
+</div>
+</div>
+<!-- Glassmorphism Top Bar for Camera Controls -->
+<div class="absolute top-4 left-margin-horizontal right-margin-horizontal flex justify-between items-center p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+<button class="w-8 h-8 flex items-center justify-center text-white"><span class="material-symbols-outlined" data-icon="flash_on">flash_on</span></button>
+<span class="text-white text-[10px] uppercase tracking-widest font-bold px-2">Auto-focus</span>
+<button class="w-8 h-8 flex items-center justify-center text-white"><span class="material-symbols-outlined" data-icon="zoom_in">zoom_in</span></button>
+</div>
+</div>
+</div>
+<!-- Backdrop Overlay (Active) -->
+<div class="fixed inset-0 bg-black/40 z-40 transition-opacity duration-300" id="backdrop"></div>
+<!-- Bottom Sheet Result -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-surface-primary rounded-t-[28px] max-h-[90vh] overflow-y-auto bottom-sheet transform translate-y-0 shadow-2xl" id="resultSheet">
+<!-- Handle -->
+<div class="w-full flex justify-center py-3">
+<div class="w-9 h-1.5 bg-outline-variant rounded-full opacity-40"></div>
+</div>
+<!-- Content Container -->
+<div class="px-margin-horizontal pb-8 pt-1 space-y-5">
+<!-- Domain Header -->
+<div class="space-y-1 text-center py-2">
+<p class="font-label-compact text-text-secondary uppercase tracking-[0.1em] text-[10px]">Detected Destination</p>
+<h2 class="text-[22px] font-bold text-primary tracking-tight break-all">verify-account-example.net</h2>
+</div>
+<!-- Status Banner -->
+<div class="bg-caution/10 border border-caution/20 rounded-2xl p-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-caution/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-caution text-2xl" data-icon="warning">warning</span>
+</div>
+<div>
+<p class="font-section-title text-on-surface text-base">This link looks suspicious</p>
+<p class="font-body-supporting text-text-secondary">We found some red flags you should check.</p>
+</div>
+</div>
+<!-- Technical Details Grid -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-secondary border border-divider rounded-xl p-3">
+<p class="text-[10px] font-bold text-text-secondary uppercase mb-1">Security</p>
+<div class="flex items-center gap-2 text-caution font-semibold text-sm">
+<span class="material-symbols-outlined text-base" data-icon="no_encryption">no_encryption</span>
+<span>Insecure HTTP</span>
+</div>
+</div>
+<div class="bg-surface-secondary border border-divider rounded-xl p-3">
+<p class="text-[10px] font-bold text-text-secondary uppercase mb-1">Network Port</p>
+<div class="flex items-center gap-2 text-on-surface font-semibold text-sm">
+<span class="material-symbols-outlined text-base" data-icon="settings_input_component">settings_input_component</span>
+<span>8080 (Uncommon)</span>
+</div>
+</div>
+</div>
+<!-- Plain Language Explanation -->
+<div class="space-y-4">
+<h3 class="font-section-title text-sm text-on-surface uppercase tracking-wider">Why we flagged this</h3>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<div class="mt-0.5"><span class="material-symbols-outlined text-text-secondary text-lg" data-icon="error_outline">error_outline</span></div>
+<p class="text-body-default text-on-surface-variant">The web address uses keywords often found in scam sites trying to steal account logins.</p>
+</div>
+<div class="flex items-start gap-3">
+<div class="mt-0.5"><span class="material-symbols-outlined text-text-secondary text-lg" data-icon="privacy_tip">privacy_tip</span></div>
+<p class="text-body-default text-on-surface-variant">This site lacks encryption. Any information you enter could be visible to others on the network.</p>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-2 space-y-3">
+<button class="w-full h-14 bg-primary text-on-primary font-section-title rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform">
+<span>Open anyway</span>
+<span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</button>
+<div class="grid grid-cols-3 gap-2">
+<button class="flex flex-col items-center justify-center py-3 px-1 rounded-xl border border-divider hover:bg-surface-container-high transition-colors text-secondary gap-1">
+<span class="material-symbols-outlined text-xl" data-icon="content_copy">content_copy</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Copy</span>
+</button>
+<button class="flex flex-col items-center justify-center py-3 px-1 rounded-xl border border-divider hover:bg-surface-container-high transition-colors text-secondary gap-1">
+<span class="material-symbols-outlined text-xl" data-icon="share">share</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Share</span>
+</button>
+<button class="flex flex-col items-center justify-center py-3 px-1 rounded-xl border border-divider hover:bg-surface-container-high transition-colors text-secondary gap-1">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark">bookmark</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Save</span>
+</button>
+</div>
+</div>
+<!-- Cancel -->
+<div class="pt-2">
+<button class="w-full py-2 text-center text-text-secondary font-medium text-sm hover:text-on-surface transition-colors" id="closeBtn">
+                        Go back to scanner
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full z-30 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low border-t border-divider">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-5 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner" style="font-variation-settings: 'FILL' 1;">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-5 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-5 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</a>
+</nav>
+<script>
+        const sheet = document.getElementById('resultSheet');
+        const backdrop = document.getElementById('backdrop');
+        const closeBtn = document.getElementById('closeBtn');
+
+        function closeSheet() {
+            sheet.style.transform = 'translateY(100%)';
+            backdrop.style.opacity = '0';
+            setTimeout(() => {
+                backdrop.style.display = 'none';
+            }, 300);
+        }
+
+        closeBtn.addEventListener('click', closeSheet);
+        backdrop.addEventListener('click', closeSheet);
+
+        let startY = 0;
+        sheet.addEventListener('touchstart', e => {
+            startY = e.touches[0].clientY;
+        });
+
+        sheet.addEventListener('touchmove', e => {
+            const moveY = e.touches[0].clientY - startY;
+            if (moveY > 0) {
+                sheet.style.transform = `translateY(${moveY}px)`;
+                backdrop.style.opacity = Math.max(0, 1 - (moveY / 300));
+            }
+        });
+
+        sheet.addEventListener('touchend', e => {
+            const endY = e.changedTouches[0].clientY - startY;
+            if (endY > 150) {
+                closeSheet();
+            } else {
+                sheet.style.transform = 'translateY(0)';
+                backdrop.style.opacity = '1';
+            }
+        });
+    </script>
+</body></html>

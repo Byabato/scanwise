@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Library - ScanWise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#3f4944",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "on-surface": "#191c1b",
+                        "primary": "#00513f",
+                        "on-error-container": "#93000a",
+                        "on-background": "#191c1b",
+                        "tertiary-container": "#2d6485",
+                        "on-tertiary-fixed": "#001e2e",
+                        "divider": "#E2E6E2",
+                        "primary-fixed": "#a4f2d6",
+                        "surface-primary": "#FFFFFF",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d9dad8",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "critical": "#B43A3A",
+                        "secondary-fixed": "#d5e6e0",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#bec9c3",
+                        "on-secondary-container": "#566661",
+                        "on-primary-container": "#9be9cd",
+                        "inverse-surface": "#2e3130",
+                        "surface-variant": "#e2e3e1",
+                        "primary-container": "#176b55",
+                        "error": "#ba1a1a",
+                        "tertiary": "#0a4c6c",
+                        "surface-container-low": "#f3f4f2",
+                        "surface-bright": "#f9faf8",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "background": "#f9faf8",
+                        "inverse-on-surface": "#f0f1ef",
+                        "text-secondary": "#646B67",
+                        "surface-container-high": "#e7e8e6",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#166b55",
+                        "positive": "#287A55",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#b3dfff",
+                        "outline": "#6f7974",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#d2e4dd",
+                        "surface": "#f9faf8",
+                        "primary-fixed-dim": "#89d5ba",
+                        "secondary": "#51625d",
+                        "on-primary-fixed-variant": "#00513f",
+                        "surface-container": "#edeeec",
+                        "tertiary-fixed": "#c8e6ff",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "inverse-primary": "#89d5ba",
+                        "caution": "#A66610",
+                        "surface-secondary": "#F1F3F0",
+                        "text-primary": "#161A18",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#094c6b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "stack-sm": "4px",
+                        "stack-lg": "24px",
+                        "margin-horizontal": "20px",
+                        "base": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-default": ["Inter"],
+                        "screen-title": ["Inter"],
+                        "card-title": ["Inter"],
+                        "body-supporting": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "section-title": ["Inter"],
+                        "screen-title-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-surface/95 backdrop-blur-md dark:bg-surface-dim/95 flex justify-between items-center w-full px-margin-horizontal h-14 border-b border-divider">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim text-[18px]">ScanWise</h1>
+</div>
+<div class="flex items-center gap-1">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-secondary" data-icon="cloud_sync">cloud_sync</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-secondary" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</header>
+<main class="px-margin-horizontal pt-4">
+<!-- Workspace Header -->
+<div class="mb-6">
+<h2 class="font-screen-title text-screen-title text-text-primary">Library</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-body-supporting text-body-supporting text-text-secondary">42 items in Workspace</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="font-body-supporting text-body-supporting text-positive">All synced</span>
+</div>
+</div>
+<!-- Material 3 Search & Filter -->
+<div class="flex gap-2 mb-6">
+<div class="relative flex-1 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" data-icon="search">search</span>
+<input class="w-full h-11 pl-10 pr-4 bg-surface-container border-none rounded-xl font-body-default text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search workspace..." type="text"/>
+</div>
+<button class="h-11 px-3 flex items-center gap-2 bg-surface-container rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+<span class="font-label-compact">Filters</span>
+</button>
+</div>
+<!-- Collection Workspace Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar -mx-margin-horizontal px-margin-horizontal mb-6">
+<button class="flex-shrink-0 px-4 py-2 rounded-xl font-label-compact text-label-compact bg-secondary-container text-on-secondary-container flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="grid_view">grid_view</span>
+                All Scans
+            </button>
+<button class="flex-shrink-0 px-4 py-2 rounded-xl font-label-compact text-label-compact bg-surface-container text-text-secondary hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="star">star</span>
+                Favorites
+            </button>
+<button class="flex-shrink-0 px-4 py-2 rounded-xl font-label-compact text-label-compact bg-surface-container text-text-secondary hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="work">work</span>
+                Business
+            </button>
+<button class="flex-shrink-0 px-4 py-2 rounded-xl font-label-compact text-label-compact bg-surface-container text-text-secondary hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+                Bills
+            </button>
+<button class="flex-shrink-0 px-4 py-2 rounded-xl font-label-compact text-label-compact bg-surface-container text-text-secondary hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="inventory_2">inventory_2</span>
+                Archive
+            </button>
+</div>
+<!-- Dense Workspace List -->
+<div class="space-y-6">
+<!-- Group: Recent -->
+<section>
+<div class="flex items-center justify-between mb-2 px-1">
+<h3 class="font-label-compact text-label-compact uppercase tracking-widest text-text-secondary">Recent Activities</h3>
+<button class="text-primary font-label-compact">Select</button>
+</div>
+<div class="bg-surface-container-low rounded-[20px] overflow-hidden border border-divider">
+<!-- Scan Item: Wi-Fi -->
+<div class="p-3 flex items-center gap-3 active:bg-surface-container-high transition-colors cursor-pointer border-b border-divider last:border-b-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/50 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="wifi">wifi</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-card-title text-[15px] text-text-primary truncate">Guest_Network_742</h4>
+<p class="font-body-supporting text-[12px] text-text-secondary truncate">WPA2 Enterprise • Last connected 2m ago</p>
+</div>
+<span class="text-[11px] font-medium text-text-secondary px-2 py-0.5 bg-surface-secondary rounded">WI-FI</span>
+</div>
+<!-- Scan Item: Contact -->
+<div class="p-3 flex items-center gap-3 active:bg-surface-container-high transition-colors cursor-pointer border-b border-divider last:border-b-0">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed/30 flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="badge">badge</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-card-title text-[15px] text-text-primary truncate">Sarah Jenkins</h4>
+<p class="font-body-supporting text-[12px] text-text-secondary truncate">Senior Product Manager • TechConf 24</p>
+</div>
+<span class="text-[11px] font-medium text-text-secondary px-2 py-0.5 bg-surface-secondary rounded">VCARD</span>
+</div>
+<!-- Scan Item: Document -->
+<div class="p-3 flex items-center gap-3 active:bg-surface-container-high transition-colors cursor-pointer border-b border-divider last:border-b-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/50 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-card-title text-[15px] text-text-primary truncate">Project_Charter_Final.pdf</h4>
+<p class="font-body-supporting text-[12px] text-text-secondary truncate">4.2 MB • Cloud Sync Active</p>
+</div>
+<span class="text-[11px] font-medium text-text-secondary px-2 py-0.5 bg-surface-secondary rounded">DOC</span>
+</div>
+</div>
+</section>
+<!-- Group: Security Alerts -->
+<section>
+<div class="flex items-center justify-between mb-2 px-1">
+<h3 class="font-label-compact text-label-compact uppercase tracking-widest text-critical">Security Actions Required</h3>
+</div>
+<div class="bg-error-container/20 rounded-[20px] overflow-hidden border border-error-container">
+<div class="p-3 flex items-center gap-3 active:bg-error-container/30 transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center text-critical flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="gpp_maybe">gpp_maybe</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-card-title text-[15px] text-critical truncate">Suspicious QR Code</h4>
+<p class="font-body-supporting text-[12px] text-on-error-container truncate">Flagged as potential phishing attempt</p>
+</div>
+<span class="material-symbols-outlined text-critical" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Group: Workspace Inventory -->
+<section>
+<div class="flex items-center justify-between mb-2 px-1">
+<h3 class="font-label-compact text-label-compact uppercase tracking-widest text-text-secondary">Inventory &amp; Products</h3>
+</div>
+<div class="bg-surface-container-low rounded-[20px] overflow-hidden border border-divider">
+<div class="p-3 flex items-center gap-3 active:bg-surface-container-high transition-colors cursor-pointer border-b border-divider last:border-b-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/50 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-card-title text-[15px] text-text-primary truncate">Aeron Chair - Slate Grey</h4>
+<p class="font-body-supporting text-[12px] text-text-secondary truncate">Serial: HM-293-88 • Office Floor 4</p>
+</div>
+<span class="text-[11px] font-medium text-text-secondary px-2 py-0.5 bg-surface-secondary rounded">ASSET</span>
+</div>
+<div class="p-3 flex items-center gap-3 active:bg-surface-container-high transition-colors cursor-pointer border-b border-divider last:border-b-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/50 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-card-title text-[15px] text-text-primary truncate">Logitech MX Master 3S</h4>
+<p class="font-body-supporting text-[12px] text-text-secondary truncate">SKU: 910-006556 • Order #8272</p>
+</div>
+<span class="text-[11px] font-medium text-text-secondary px-2 py-0.5 bg-surface-secondary rounded">ORDER</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface/80 backdrop-blur-lg border-t border-divider">
+<a class="flex flex-col items-center justify-center text-secondary px-5 py-1 hover:bg-surface-container-high rounded-full transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-[11px]">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary px-5 py-1 relative" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="folder_managed" style="font-variation-settings: 'FILL' 1;">folder_managed</span>
+<span class="font-label-compact text-[11px] font-semibold">Library</span>
+<div class="absolute -top-1 right-3 w-1.5 h-1.5 bg-primary rounded-full"></div>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary px-5 py-1 hover:bg-surface-container-high rounded-full transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-label-compact text-[11px]">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for workspace chips
+        const chips = document.querySelectorAll('.flex-shrink-0');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+                    c.classList.add('bg-surface-container', 'text-text-secondary');
+                });
+                chip.classList.remove('bg-surface-container', 'text-text-secondary');
+                chip.classList.add('bg-secondary-container', 'text-on-secondary-container');
+            });
+        });
+
+        // Workspace grouping reveal
+        const observerOptions = { threshold: 0.05 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(12px)';
+            el.style.transition = 'all 0.5s cubic-bezier(0.2, 0, 0, 1)';
+            observer.observe(el);
+        });
+    </script>
+</body></html>

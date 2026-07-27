@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ScanWise - Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9faf8",
+                        "critical": "#B43A3A",
+                        "inverse-on-surface": "#f0f1ef",
+                        "inverse-primary": "#89d5ba",
+                        "positive": "#287A55",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-tint": "#166b55",
+                        "surface-container": "#edeeec",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#2d6485",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "on-tertiary-container": "#b3dfff",
+                        "inverse-surface": "#2e3130",
+                        "outline": "#6f7974",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1b",
+                        "outline-variant": "#bec9c3",
+                        "tertiary": "#0a4c6c",
+                        "primary-fixed-dim": "#89d5ba",
+                        "tertiary-fixed": "#c8e6ff",
+                        "secondary-container": "#d2e4dd",
+                        "primary-container": "#176b55",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dad8",
+                        "text-secondary": "#646B67",
+                        "on-primary-fixed-variant": "#00513f",
+                        "surface-bright": "#f9faf8",
+                        "divider": "#E2E6E2",
+                        "on-surface": "#191c1b",
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "caution": "#A66610",
+                        "surface-container-low": "#f3f4f2",
+                        "on-surface-variant": "#3f4944",
+                        "on-error-container": "#93000a",
+                        "secondary": "#51625d",
+                        "background": "#f9faf8",
+                        "primary-fixed": "#a4f2d6",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "on-tertiary-fixed": "#001e2e",
+                        "text-primary": "#161A18",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d5e6e0",
+                        "surface-variant": "#e2e3e1",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "surface-container-high": "#e7e8e6",
+                        "on-primary-container": "#9be9cd",
+                        "primary": "#00513f",
+                        "surface-secondary": "#F1F3F0",
+                        "surface-primary": "#FFFFFF",
+                        "on-secondary-container": "#566661",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "base": "8px",
+                        "stack-sm": "4px",
+                        "margin-horizontal": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "screen-title-mobile": ["Inter"],
+                        "body-supporting": ["Inter"],
+                        "screen-title": ["Inter"],
+                        "card-title": ["Inter"],
+                        "body-default": ["Inter"]
+                    },
+                    "fontSize": {
+                        "section-title": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-compact": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "screen-title-mobile": ["22px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-supporting": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "screen-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "card-title": ["16px", { "lineHeight": "22px", "fontWeight": "600" }],
+                        "body-default": ["15px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9faf8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .empty-state-illustration {
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+        /* Custom micro-interactions */
+        .btn-press:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-on-surface">
+<!-- Top AppBar -->
+<header class="bg-surface dark:bg-surface-dim flex justify-between items-center w-full px-margin-horizontal h-16 fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">ScanWise</h1>
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-secondary hover:bg-surface-container-high dark:hover:bg-surface-container-highest p-2 rounded-full transition-colors duration-200" data-icon="search">search</button>
+<button class="material-symbols-outlined text-secondary hover:bg-surface-container-high dark:hover:bg-surface-container-highest p-2 rounded-full transition-colors duration-200" data-icon="more_vert">more_vert</button>
+</div>
+</header>
+<!-- Main Content Area (Library Empty State) -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-horizontal py-stack-lg mt-16 mb-20 overflow-hidden relative">
+<!-- Background decorative element for "Calm Intelligence" -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none opacity-40">
+<div class="w-full h-full bg-[radial-gradient(circle_at_center,_#d2e4dd_0%,_transparent_70%)] blur-3xl"></div>
+</div>
+<div class="relative z-10 w-full max-w-sm flex flex-col items-center text-center">
+<!-- Illustration Container -->
+<div class="mb-stack-lg relative">
+<div class="w-48 h-48 rounded-full bg-surface-container flex items-center justify-center overflow-hidden border border-divider">
+<img class="w-32 h-32 object-contain opacity-80" data-alt="A clean, minimalist line-art illustration of an empty digital bookshelf with soft green and grey accents. The style is modern corporate, featuring a peaceful and organized atmosphere. A single glowing QR code icon floats gently above the shelves. The background is a soft off-white, maintaining a calm intelligence brand aesthetic with 1px fine stroke weights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjyt3xvvytrayhdnms8PfJXZIKQ0pRN6SoYC9HRp9Cqz57OGF7UdPLQzdtW8c1-8anJxKcCsq_FiO4j0l7MnIVuMI4ZOfF7AoC1g8awzLdNo6BK2b6X1iBTMu3rkMP17326JEFJnfFAyLTqnzFCAFCC1yE_U6PCwO1sJOVhdoMpdPX0qGjq8tJ-xMKCu77mAFohYYrom19UBRpxRuPjRBGJQtfqY7THNA6-BXJXYKy1dt3Ob1ebYZg6w"/>
+</div>
+<!-- Floating decorative chips -->
+<div class="absolute -top-4 -right-4 w-12 h-12 bg-secondary-container rounded-2xl flex items-center justify-center rotate-12 shadow-sm border border-white">
+<span class="material-symbols-outlined text-primary" data-icon="history">history</span>
+</div>
+<div class="absolute bottom-4 -left-6 w-10 h-10 bg-surface-primary rounded-xl flex items-center justify-center -rotate-6 shadow-sm border border-divider">
+<span class="material-symbols-outlined text-secondary" data-icon="cloud_off">cloud_off</span>
+</div>
+</div>
+<!-- Typography Content -->
+<h2 class="font-screen-title text-screen-title text-text-primary mb-stack-sm">Nothing saved yet</h2>
+<p class="font-body-default text-body-default text-text-secondary px-4 mb-stack-lg">
+                Your scanned QR codes and barcodes can be saved locally for quick access. Everything stays secure on your device.
+            </p>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-3">
+<button class="btn-press w-full bg-primary text-on-primary py-4 rounded-[16px] font-card-title flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+                    Scan a code
+                </button>
+<button class="btn-press w-full bg-surface-secondary text-primary py-4 rounded-[16px] font-card-title flex items-center justify-center gap-2 border border-divider">
+<span class="material-symbols-outlined" data-icon="add_photo_alternate">add_photo_alternate</span>
+                    Import from gallery
+                </button>
+</div>
+<!-- Helpful Tip Card -->
+<div class="mt-stack-lg w-full p-stack-md bg-surface-container-low border border-divider rounded-[20px] flex items-start gap-3 text-left">
+<div class="mt-1 p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="privacy_tip">privacy_tip</span>
+</div>
+<div>
+<h4 class="font-card-title text-card-title text-text-primary mb-0.5">Privacy First</h4>
+<p class="font-body-supporting text-body-supporting text-text-secondary">ScanWise never uploads your history to any servers. Your data belongs to you.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low dark:bg-surface-container-lowest border-t border-divider dark:border-outline-variant">
+<!-- Scan Tab (Inactive) -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-200">
+<span class="material-symbols-outlined mb-0.5" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact">Scan</span>
+</button>
+<!-- Library Tab (Active) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 Active: scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined mb-0.5" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</button>
+<!-- Settings Tab (Inactive) -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-200">
+<span class="material-symbols-outlined mb-0.5" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</button>
+</nav>
+<script>
+        // Simple touch feedback and micro-interactions
+        document.querySelectorAll('.btn-press').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('touchend', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Ambient movement for the background blur (optional visual flair)
+        const ambientOverlay = document.querySelector('.absolute.top-1\/2.left-1\/2');
+        if (ambientOverlay) {
+            window.addEventListener('mousemove', (e) => {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.02;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.02;
+                ambientOverlay.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
+            });
+        }
+    </script>
+</body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sheet-gradient {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(249,250,248,1) 100%);
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(0.98); }
+        }
+        .animate-scan-pulse {
+            animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9faf8",
+                        "critical": "#B43A3A",
+                        "inverse-on-surface": "#f0f1ef",
+                        "inverse-primary": "#89d5ba",
+                        "positive": "#287A55",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-tint": "#166b55",
+                        "surface-container": "#edeeec",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#2d6485",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "on-tertiary-container": "#b3dfff",
+                        "inverse-surface": "#2e3130",
+                        "outline": "#6f7974",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1b",
+                        "outline-variant": "#bec9c3",
+                        "tertiary": "#0a4c6c",
+                        "primary-fixed-dim": "#89d5ba",
+                        "tertiary-fixed": "#c8e6ff",
+                        "secondary-container": "#d2e4dd",
+                        "primary-container": "#176b55",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dad8",
+                        "text-secondary": "#646B67",
+                        "on-primary-fixed-variant": "#00513f",
+                        "surface-bright": "#f9faf8",
+                        "divider": "#E2E6E2",
+                        "on-surface": "#191c1b",
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "caution": "#A66610",
+                        "surface-container-low": "#f3f4f2",
+                        "on-surface-variant": "#3f4944",
+                        "on-error-container": "#93000a",
+                        "secondary": "#51625d",
+                        "background": "#f9faf8",
+                        "primary-fixed": "#a4f2d6",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "on-tertiary-fixed": "#001e2e",
+                        "text-primary": "#161A18",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d5e6e0",
+                        "surface-variant": "#e2e3e1",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "surface-container-high": "#e7e8e6",
+                        "on-primary-container": "#9be9cd",
+                        "primary": "#00513f",
+                        "surface-secondary": "#F1F3F0",
+                        "surface-primary": "#FFFFFF",
+                        "on-secondary-container": "#566661",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "base": "8px",
+                        "stack-sm": "4px",
+                        "margin-horizontal": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "screen-title-mobile": ["Inter"],
+                        "body-supporting": ["Inter"],
+                        "screen-title": ["Inter"],
+                        "card-title": ["Inter"],
+                        "body-default": ["Inter"]
+                    },
+                    "fontSize": {
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-hidden">
+<!-- Background Camera View Simulation -->
+<div class="relative w-full h-screen bg-black flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A blurry, cinematic close-up of a modern product packaging with a clear QR code, set in a sophisticated, minimalist workshop environment. Soft morning light filters through large windows, creating a high-end, editorial feel with deep forest green and neutral gray tones. The focus is slightly soft to simulate a camera lens background, emphasizing a clean and secure technological atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAceJ2ZTAgulSUlmvUAAEeOaV2kfPdSVCp1AwkGqPKf81X95m__W1qYaNw5JTpOjBmJupQ4xJZfB4jhN7nDalZVZYmwjTzG7oTwmi3YMJQuaTxvIbPtMlK46BV7tWi88R4lmstCj_68pAZunvK2sMc4xHgpHbyDfmU3L48uVwam86WgY0DrlL8lRu6p0lAMGf8WJwVAfUqiotOLEF609mfqkx5cqhun_8LA2fkick4sff2oFmf8x7fxrQ"/>
+</div>
+<!-- Scanning Frame Overlay -->
+<div class="relative z-10 w-64 h-64 border-2 border-transparent pointer-events-none">
+<!-- Corner Brackets -->
+<div class="absolute top-0 left-0 w-8 h-8 border-t-[3px] border-l-[3px] border-primary-fixed rounded-tl-[20px] animate-scan-pulse"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-[3px] border-r-[3px] border-primary-fixed rounded-tr-[20px] animate-scan-pulse"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-[3px] border-l-[3px] border-primary-fixed rounded-bl-[20px] animate-scan-pulse"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-[3px] border-r-[3px] border-primary-fixed rounded-br-[20px] animate-scan-pulse"></div>
+<!-- Scanning Line -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-primary-fixed/50 shadow-[0_0_15px_rgba(164,242,214,0.8)] animate-[scan_2s_ease-in-out_infinite]"></div>
+</div>
+<style>
+            @keyframes scan {
+                0% { transform: translateY(0); opacity: 0; }
+                50% { opacity: 1; }
+                100% { transform: translateY(256px); opacity: 0; }
+            }
+        </style>
+<!-- Top Bar Overlay -->
+<header class="fixed top-0 left-0 w-full z-20 flex justify-between items-center px-margin-horizontal h-16 bg-black/20 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-screen-title-mobile text-screen-title-mobile text-primary-fixed">ScanWise</span>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white">
+<span class="material-symbols-outlined">flash_on</span>
+</button>
+</header>
+</div>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 z-40 bg-on-background/40 backdrop-blur-sm transition-opacity duration-300"></div>
+<!-- Duplicate Scan Bottom Sheet -->
+<div class="fixed bottom-0 left-0 right-0 z-50 transform translate-y-0 transition-transform duration-500 ease-out">
+<div class="bg-surface-primary rounded-t-[28px] max-w-md mx-auto shadow-2xl overflow-hidden border-t border-divider">
+<!-- Handle -->
+<div class="flex justify-center pt-3 pb-2">
+<div class="w-8 h-1 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Header Section -->
+<div class="px-margin-horizontal pt-2 pb-gutter flex flex-col items-center text-center">
+<div class="mb-stack-md inline-flex items-center gap-2 px-3 py-1 rounded-full bg-caution/10 text-caution">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span class="font-label-compact text-label-compact">Duplicate Found</span>
+</div>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-text-primary mb-stack-sm">You scanned this before.</h1>
+<p class="font-body-supporting text-body-supporting text-text-secondary">This item already exists in your ScanWise library.</p>
+</div>
+<!-- Preview Card -->
+<div class="px-margin-horizontal mb-stack-lg">
+<div class="bg-surface p-stack-lg rounded-[20px] border border-divider flex items-start gap-gutter">
+<div class="w-16 h-16 rounded-[12px] overflow-hidden bg-surface-container flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A professional product shot of a minimalist geometric glass bottle on a clean white surface with sharp shadows. The aesthetic is clean, corporate, and high-quality, utilizing a palette of soft whites and deep greens to convey a sense of premium value and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5RGU3jnomTSIn-OPHTUnRxHyFKpHwH4DUKRALQljB-ber_up-jmef2Fitj8ypYeXUCtNerZcn-CLCuFk25FCv-V1BaIrqVHE_0BzgHYl4R1jChWbg5tm__3LgC4yL7iUCr1N5Lm2lkRHs44CRGe67s1abuHrnd_-VkyiYLIsoOlWN6hkodvMpePcprvIxi2A_U5YDxBXdPEwzonlxjL_JUdBLvu-rMZGWej6SJjlbw8G4LtaSqoP0CQ"/>
+</div>
+<div class="flex-grow min-w-0">
+<h2 class="font-card-title text-card-title text-text-primary truncate">Premium Glass Asset #42</h2>
+<div class="flex flex-col gap-1 mt-1">
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-body-supporting text-body-supporting">Last Scanned: Oct 24, 2023</span>
+</div>
+<div class="flex items-center gap-1.5 text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">folder_open</span>
+<span class="font-body-supporting text-body-supporting">Collection: Inventory Beta</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="px-margin-horizontal pb-8 flex flex-col gap-3">
+<button class="w-full py-4 px-6 bg-primary text-on-primary rounded-[16px] font-section-title text-section-title flex items-center justify-center gap-2 transition-transform active:scale-95">
+<span class="material-symbols-outlined">open_in_new</span>
+                    Open existing record
+                </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="py-3 px-4 bg-surface-secondary text-primary rounded-[16px] font-body-default text-body-default flex flex-col items-center justify-center gap-1 border border-divider hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined">update</span>
+<span class="text-center">Update Time</span>
+</button>
+<button class="py-3 px-4 bg-surface-secondary text-primary rounded-[16px] font-body-default text-body-default flex flex-col items-center justify-center gap-1 border border-divider hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined">content_copy</span>
+<span class="text-center">Save Separate</span>
+</button>
+</div>
+<button class="w-full py-3 text-text-secondary font-label-compact text-label-compact hover:text-text-primary transition-colors mt-2" id="dismiss-btn">
+                    Dismiss
+                </button>
+</div>
+</div>
+</div>
+<!-- Hidden Navigation (Suppressed per "The Destination Rule" - Task Focused) -->
+<script>
+        // Micro-interactions
+        const dismissBtn = document.getElementById('dismiss-btn');
+        const sheet = document.querySelector('.fixed.bottom-0');
+        const backdrop = document.querySelector('.fixed.inset-0');
+
+        dismissBtn.addEventListener('click', () => {
+            sheet.style.transform = 'translateY(100%)';
+            backdrop.style.opacity = '0';
+            setTimeout(() => {
+                backdrop.style.display = 'none';
+            }, 300);
+        });
+
+        // Add touch drag logic simulation
+        let touchStartY = 0;
+        sheet.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        sheet.addEventListener('touchmove', (e) => {
+            const touchY = e.touches[0].clientY;
+            const deltaY = touchY - touchStartY;
+            if (deltaY > 0) {
+                sheet.style.transform = `translateY(${deltaY}px)`;
+            }
+        });
+
+        sheet.addEventListener('touchend', (e) => {
+            const touchY = e.changedTouches[0].clientY;
+            const deltaY = touchY - touchStartY;
+            if (deltaY > 100) {
+                sheet.style.transform = 'translateY(100%)';
+                backdrop.style.opacity = '0';
+                setTimeout(() => backdrop.style.display = 'none', 300);
+            } else {
+                sheet.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
+</body></html>

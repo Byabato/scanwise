@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Library - ScanWise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#f9faf8",
+                        "critical": "#B43A3A",
+                        "inverse-on-surface": "#f0f1ef",
+                        "inverse-primary": "#89d5ba",
+                        "positive": "#287A55",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-tint": "#166b55",
+                        "surface-container": "#edeeec",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#2d6485",
+                        "secondary-fixed-dim": "#b9cac4",
+                        "on-tertiary-container": "#b3dfff",
+                        "inverse-surface": "#2e3130",
+                        "outline": "#6f7974",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1b",
+                        "outline-variant": "#bec9c3",
+                        "tertiary": "#0a4c6c",
+                        "primary-fixed-dim": "#89d5ba",
+                        "tertiary-fixed": "#c8e6ff",
+                        "secondary-container": "#d2e4dd",
+                        "primary-container": "#176b55",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d9dad8",
+                        "text-secondary": "#646B67",
+                        "on-primary-fixed-variant": "#00513f",
+                        "surface-bright": "#f9faf8",
+                        "divider": "#E2E6E2",
+                        "on-surface": "#191c1b",
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "caution": "#A66610",
+                        "surface-container-low": "#f3f4f2",
+                        "on-surface-variant": "#3f4944",
+                        "on-error-container": "#93000a",
+                        "secondary": "#51625d",
+                        "background": "#f9faf8",
+                        "primary-fixed": "#a4f2d6",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-secondary-fixed": "#0f1e1a",
+                        "on-tertiary-fixed": "#001e2e",
+                        "text-primary": "#161A18",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#d5e6e0",
+                        "surface-variant": "#e2e3e1",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "surface-container-high": "#e7e8e6",
+                        "on-primary-container": "#9be9cd",
+                        "primary": "#00513f",
+                        "surface-secondary": "#F1F3F0",
+                        "surface-primary": "#FFFFFF",
+                        "on-secondary-container": "#566661",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "base": "8px",
+                        "stack-sm": "4px",
+                        "margin-horizontal": "20px",
+                        "gutter": "16px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "screen-title-mobile": ["Inter"],
+                        "body-supporting": ["Inter"],
+                        "screen-title": ["Inter"],
+                        "card-title": ["Inter"],
+                        "body-default": ["Inter"]
+                    },
+                    "fontSize": {
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-surface dark:bg-surface-dim flex justify-between items-center w-full px-margin-horizontal h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary dark:text-primary-fixed-dim">ScanWise</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200">
+<span class="material-symbols-outlined text-secondary" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<main class="px-margin-horizontal pt-4">
+<!-- Library Header & Summary -->
+<div class="mb-stack-lg">
+<h2 class="font-screen-title text-screen-title text-text-primary mb-1">Library</h2>
+<p class="font-body-supporting text-body-supporting text-text-secondary">24 saved scans · 3 collections</p>
+</div>
+<!-- Search and Filter Row -->
+<div class="flex gap-stack-md mb-stack-lg">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary text-[20px]" data-icon="search">search</span>
+<input class="w-full h-12 pl-11 pr-4 bg-surface-secondary border-none rounded-full font-body-default focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search saved scans..." type="text"/>
+</div>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-secondary rounded-full text-text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+</div>
+<!-- Collection Chips (Horizontal Scroll) -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar -mx-margin-horizontal px-margin-horizontal mb-stack-lg">
+<button class="flex-shrink-0 px-5 py-2 rounded-full font-label-compact text-label-compact bg-primary text-on-primary shadow-sm">All scans</button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full font-label-compact text-label-compact bg-surface-secondary text-text-secondary hover:bg-surface-container-high transition-colors">Favorites</button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full font-label-compact text-label-compact bg-surface-secondary text-text-secondary hover:bg-surface-container-high transition-colors">Event contacts</button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full font-label-compact text-label-compact bg-surface-secondary text-text-secondary hover:bg-surface-container-high transition-colors">Products</button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full font-label-compact text-label-compact bg-surface-secondary text-text-secondary hover:bg-surface-container-high transition-colors">Research</button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full font-label-compact text-label-compact bg-surface-secondary text-text-secondary hover:bg-surface-container-high transition-colors">Wi-Fi</button>
+</div>
+<!-- Scans List grouped by Date -->
+<div class="space-y-stack-lg">
+<!-- Group: Today -->
+<section>
+<h3 class="font-section-title text-section-title text-text-secondary mb-stack-md px-1">Today</h3>
+<div class="space-y-3">
+<!-- Scan Item 1 -->
+<div class="bg-surface-primary border border-divider rounded-[20px] p-4 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="wifi">wifi</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="font-card-title text-card-title text-text-primary truncate">Guest_Network_742</h4>
+<span class="font-label-compact text-[10px] text-text-secondary whitespace-nowrap ml-2">14:20</span>
+</div>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">WPA2 Enterprise • High Speed</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-md bg-surface-secondary text-[11px] font-medium text-text-secondary">
+                                Wi-Fi
+                            </div>
+</div>
+</div>
+<!-- Scan Item 2 -->
+<div class="bg-surface-primary border border-divider rounded-[20px] p-4 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="font-card-title text-card-title text-text-primary truncate">Ergo-Task Office Chair</h4>
+<span class="font-label-compact text-[10px] text-text-secondary whitespace-nowrap ml-2">10:45</span>
+</div>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">Product SKU: 884-219-X</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-md bg-surface-secondary text-[11px] font-medium text-text-secondary">
+                                Products
+                            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Yesterday -->
+<section>
+<h3 class="font-section-title text-section-title text-text-secondary mb-stack-md px-1">Yesterday</h3>
+<div class="space-y-3">
+<!-- Scan Item 3 -->
+<div class="bg-surface-primary border border-divider rounded-[20px] p-4 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="contact_page">contact_page</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="font-card-title text-card-title text-text-primary truncate">Julian Thorne • Creative Lead</h4>
+<span class="font-label-compact text-[10px] text-text-secondary whitespace-nowrap ml-2">18:12</span>
+</div>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">vCard • Portfolio Link Attached</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-md bg-surface-secondary text-[11px] font-medium text-text-secondary">
+                                Event contacts
+                            </div>
+</div>
+</div>
+<!-- Scan Item 4 -->
+<div class="bg-surface-primary border border-divider rounded-[20px] p-4 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-error-container flex items-center justify-center text-critical">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="font-card-title text-card-title text-text-primary truncate">Unknown Payment Portal</h4>
+<span class="font-label-compact text-[10px] text-text-secondary whitespace-nowrap ml-2">16:05</span>
+</div>
+<p class="font-body-supporting text-body-supporting text-critical truncate">Flagged: Phishing Risk Detected</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-md bg-surface-secondary text-[11px] font-medium text-text-secondary">
+                                Security Flags
+                            </div>
+</div>
+</div>
+<!-- Scan Item 5 -->
+<div class="bg-surface-primary border border-divider rounded-[20px] p-4 flex items-center gap-4 active:scale-[0.98] transition-transform cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="font-card-title text-card-title text-text-primary truncate">Quantum Computing Report 2024</h4>
+<span class="font-label-compact text-[10px] text-text-secondary whitespace-nowrap ml-2">09:30</span>
+</div>
+<p class="font-body-supporting text-body-supporting text-text-secondary truncate">Whitepaper PDF • arXiv.org</p>
+<div class="mt-2 inline-flex items-center px-2 py-0.5 rounded-md bg-surface-secondary text-[11px] font-medium text-text-secondary">
+                                Research
+                            </div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low dark:bg-surface-container-lowest border-t border-divider dark:border-outline-variant">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact">Scan</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-full px-5 py-1 Active: scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-5 py-1 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for collection chips
+        const chips = document.querySelectorAll('.flex-shrink-0');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+                    c.classList.add('bg-surface-secondary', 'text-text-secondary');
+                });
+                chip.classList.remove('bg-surface-secondary', 'text-text-secondary');
+                chip.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+            });
+        });
+
+        // Add subtle animation when scrolling
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+            el.style.transition = 'all 0.4s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body></html>

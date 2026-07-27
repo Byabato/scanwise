@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#094c6b",
+                    "on-secondary-container": "#566661",
+                    "positive": "#287A55",
+                    "on-primary-fixed-variant": "#00513f",
+                    "inverse-primary": "#89d5ba",
+                    "outline": "#6f7974",
+                    "tertiary-fixed": "#c8e6ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#191c1b",
+                    "surface-container-highest": "#e2e3e1",
+                    "background": "#f9faf8",
+                    "on-error-container": "#93000a",
+                    "caution": "#A66610",
+                    "tertiary-fixed-dim": "#99cdf2",
+                    "on-error": "#ffffff",
+                    "surface-secondary": "#F1F3F0",
+                    "on-surface-variant": "#3f4944",
+                    "text-secondary": "#646B67",
+                    "surface-container": "#edeeec",
+                    "on-secondary-fixed-variant": "#3a4a45",
+                    "surface-container-low": "#f3f4f2",
+                    "primary-fixed-dim": "#89d5ba",
+                    "secondary": "#51625d",
+                    "primary-fixed": "#a4f2d6",
+                    "tertiary-container": "#2d6485",
+                    "on-primary-container": "#9be9cd",
+                    "secondary-fixed-dim": "#b9cac4",
+                    "error-container": "#ffdad6",
+                    "surface": "#f9faf8",
+                    "surface-variant": "#e2e3e1",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d9dad8",
+                    "surface-bright": "#f9faf8",
+                    "inverse-surface": "#2e3130",
+                    "on-tertiary-fixed": "#001e2e",
+                    "text-primary": "#161A18",
+                    "surface-primary": "#FFFFFF",
+                    "on-surface": "#191c1b",
+                    "primary": "#00513f",
+                    "outline-variant": "#bec9c3",
+                    "secondary-fixed": "#d5e6e0",
+                    "on-tertiary-container": "#b3dfff",
+                    "on-secondary-fixed": "#0f1e1a",
+                    "surface-tint": "#166b55",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#0a4c6c",
+                    "inverse-on-surface": "#f0f1ef",
+                    "primary-container": "#176b55",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#002117",
+                    "divider": "#E2E6E2",
+                    "secondary-container": "#d2e4dd",
+                    "critical": "#B43A3A",
+                    "surface-container-high": "#e7e8e6",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "12px",
+                    "margin-horizontal": "20px",
+                    "stack-sm": "4px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "screen-title": ["Inter"],
+                    "label-compact": ["Inter"],
+                    "screen-title-mobile": ["Inter"],
+                    "body-default": ["Inter"],
+                    "section-title": ["Inter"],
+                    "card-title": ["Inter"],
+                    "body-supporting": ["Inter"]
+            },
+            "fontSize": {
+                    "screen-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}],
+                    "body-supporting": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        /* Scanning frame animation */
+        @keyframes pulse-frame {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.8; }
+        }
+        .scanner-corner {
+            width: 32px;
+            height: 32px;
+            border-color: white;
+            position: absolute;
+        }
+        .scanner-frame {
+            animation: pulse-frame 2s ease-in-out infinite;
+        }
+
+        /* Bottom sheet slide animation */
+        @keyframes slide-up {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        .animate-slide-up {
+            animation: slide-up 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+        }
+
+        /* Blur Backdrop */
+        .glass-header {
+            background: rgba(25, 28, 27, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen overflow-hidden">
+<!-- Main Camera Background (Mock) -->
+<div class="fixed inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A dark, moody interior shot of a low-light room with a blurred QR code on a wooden table. The lighting is dramatic and cinematic, emphasizing shadows and high-contrast textures. Subtle dust particles dance in a single beam of light, creating an atmosphere of quiet mystery. The color palette is dominated by deep forest greens and soft charcoal grays, aligning with a sophisticated corporate aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC4e7DwGaakyfVY3w2nygb8R5dwuJ19ZGmmJua0TjhRqgPPW6Ve3mXM5hvmsZtvqtsj-4po5NEVR4gJe_lxp3zq7QPXKBaj_OZluee9gBCpgEKAhjcvcHsz5eNBNeOjL-07HF2xO2fkWdOHhuswiTQVYgWNH5S_vYLmeuq9rDfR-wGqRA6ogTG2YEZkwES3-B05XtPk1DCvok0qZiLug_v8zoxd89l4UaMy9AU_VDJid1LFkBxUVC7drw')"></div>
+<div class="absolute inset-0 bg-black/40"></div>
+</div>
+<!-- Scanning Interface Overlays -->
+<div class="relative z-10 flex flex-col h-screen">
+<!-- Top App Bar (Shared Component Logic) -->
+<header class="glass-header text-white flex justify-between items-center w-full px-margin-horizontal h-16 fixed top-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile">ScanWise</h1>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined">flash_on</span>
+</button>
+</header>
+<!-- Scanning Reticle Area -->
+<main class="flex-grow flex items-center justify-center px-margin-horizontal">
+<div class="relative w-64 h-64 scanner-frame">
+<!-- Corners -->
+<div class="scanner-corner top-0 left-0 border-t-4 border-l-4 rounded-tl-[20px]"></div>
+<div class="scanner-corner top-0 right-0 border-t-4 border-r-4 rounded-tr-[20px]"></div>
+<div class="scanner-corner bottom-0 left-0 border-b-4 border-l-4 rounded-bl-[20px]"></div>
+<div class="scanner-corner bottom-0 right-0 border-b-4 border-r-4 rounded-br-[20px]"></div>
+<!-- Laser Line Animation -->
+<div class="absolute top-0 left-0 w-full h-[2px] bg-primary-fixed-dim blur-[1px] opacity-50 animate-[scan_3s_linear_infinite]" style="animation: scan 3s linear infinite;"></div>
+<style>
+                    @keyframes scan {
+                        0% { top: 0%; opacity: 0; }
+                        50% { opacity: 1; }
+                        100% { top: 100%; opacity: 0; }
+                    }
+                </style>
+</div>
+</main>
+<!-- Bottom Sheet (The Result Sheet Task) -->
+<div class="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity">
+<div class="absolute bottom-0 w-full animate-slide-up">
+<div class="bg-surface-primary rounded-t-[28px] px-margin-horizontal pt-4 pb-10 shadow-2xl border-t border-divider">
+<!-- Handle -->
+<div class="flex justify-center mb-6">
+<div class="w-8 h-1 bg-outline-variant rounded-full"></div>
+</div>
+<!-- Header & Icon Section -->
+<div class="flex flex-col items-center text-center mb-stack-lg">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-tertiary text-[32px]">info</span>
+</div>
+<h2 class="font-screen-title-mobile text-screen-title-mobile text-text-primary mb-2">Unable to read code</h2>
+<p class="font-body-default text-text-secondary max-w-[320px]">
+                            The light might be too low or the code is damaged. Try adjusting your position or turning on the torch.
+                        </p>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-stack-md mt-stack-lg">
+<button class="w-full h-14 bg-primary text-white font-semibold rounded-[16px] flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">refresh</span>
+<span>Try again</span>
+</button>
+<button class="w-full h-14 bg-[#DDEFE8] text-primary font-semibold rounded-[16px] flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">keyboard</span>
+<span>Enter manually</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Hidden Bottom Nav (Suppressed per "Transactional/Focused" Rule) -->
+<!-- The BottomNavBar from JSON is omitted here as we are in a focused "Error Result" state -->
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulate interaction with the "Try again" button
+            const tryAgainBtn = document.querySelector('button.bg-primary');
+            tryAgainBtn.addEventListener('click', () => {
+                const sheet = tryAgainBtn.closest('.animate-slide-up');
+                const overlay = sheet.parentElement.parentElement;
+                
+                // Animate Out
+                sheet.style.transform = 'translateY(100%)';
+                sheet.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 1, 1)';
+                overlay.style.opacity = '0';
+                overlay.style.transition = 'opacity 0.3s ease';
+                
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

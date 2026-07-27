@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        @keyframes progress-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes progress-dash {
+            0% { stroke-dasharray: 1, 150; stroke-dashoffset: 0; }
+            50% { stroke-dasharray: 90, 150; stroke-dashoffset: -35; }
+            100% { stroke-dasharray: 90, 150; stroke-dashoffset: -124; }
+        }
+
+        .animate-spin-material {
+            animation: progress-rotate 2s linear infinite;
+        }
+
+        .animate-dash-material {
+            animation: progress-dash 1.5s ease-in-out infinite;
+            stroke-linecap: round;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .privacy-shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#094c6b",
+                        "on-secondary-container": "#566661",
+                        "positive": "#287A55",
+                        "on-primary-fixed-variant": "#00513f",
+                        "inverse-primary": "#89d5ba",
+                        "outline": "#6f7974",
+                        "tertiary-fixed": "#c8e6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#191c1b",
+                        "surface-container-highest": "#e2e3e1",
+                        "background": "#f9faf8",
+                        "on-error-container": "#93000a",
+                        "caution": "#A66610",
+                        "tertiary-fixed-dim": "#99cdf2",
+                        "on-error": "#ffffff",
+                        "surface-secondary": "#F1F3F0",
+                        "on-surface-variant": "#3f4944",
+                        "text-secondary": "#646B67",
+                        "surface-container": "#edeeec",
+                        "on-secondary-fixed-variant": "#3a4a45",
+                        "surface-container-low": "#f3f4f2",
+                        "primary-fixed-dim": "#89d5ba",
+                        "secondary": "#51625d",
+                        "primary-fixed": "#a4f2d6",
+                        "tertiary-container": "#2d6485",
+                        "on-primary-container": "#9be9cd",
+                        "secondary-container": "#d2e4dd",
+                        "critical": "#B43A3A",
+                        "primary": "#00513f",
+                        "surface": "#f9faf8",
+                        "divider": "#E2E6E2",
+                        "text-primary": "#161A18",
+                        "surface-primary": "#FFFFFF"
+                    },
+                    "spacing": {
+                        "stack-md": "12px",
+                        "margin-horizontal": "20px",
+                        "stack-sm": "4px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "screen-title-mobile": ["Inter"],
+                        "body-default": ["Inter"],
+                        "label-compact": ["Inter"],
+                        "section-title": ["Inter"],
+                        "card-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "screen-title-mobile": ["22px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-default": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-compact": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "section-title": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "card-title": ["16px", {"lineHeight": "22px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-default antialiased overflow-hidden">
+<!-- Top App Bar (Shared Component) -->
+<header class="flex justify-between items-center w-full px-margin-horizontal h-16 bg-surface fixed top-0 z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<h1 class="font-screen-title-mobile text-screen-title-mobile text-primary">ScanWise</h1>
+</div>
+<div class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors duration-200">
+<span class="material-symbols-outlined text-secondary" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<!-- Main Loading Canvas -->
+<main class="relative h-screen w-full flex flex-col items-center justify-center px-margin-horizontal pt-16">
+<!-- Blurred Background Context (Simulating the image being processed) -->
+<div class="absolute inset-0 z-0 opacity-20 blur-3xl pointer-events-none overflow-hidden">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl"></div>
+</div>
+<!-- Glassmorphism Container for Image Preview (Abstracted) -->
+<div class="relative z-10 w-full max-w-[280px] aspect-[3/4] bg-surface-primary/60 backdrop-blur-md rounded-[20px] border border-divider flex items-center justify-center shadow-sm fade-in-up mb-stack-lg">
+<div class="absolute inset-0 rounded-[20px] overflow-hidden">
+<img class="w-full h-full object-cover opacity-30 grayscale-[0.5]" data-alt="A blurred, high-end close-up photograph of a professional document with complex typography and security markings. The lighting is soft and natural, emphasizing a clean corporate aesthetic with deep forest green accents. The image represents an imported scan undergoing high-precision digital analysis." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGsuerfQcNeHD5FCjGbMDlObjAfLkJUKPRFQ54tn9WbRQpcPZULe0OR-OjTLF-cPL3N8ck9PmVbFacSqaKOjAFwL8Dpgk0Epi8gt1Kv_BTGH4keLp97ehdd4Dn1OyldoZT3dN4bS40S5gVAWtTAqPMOpUXgAsJiQtJLRVoocFElJz9xaNjDexEvRpl1lAuRWhnM_vMTp4hNzhaeVXvT_SrmaIp09rg4F3uPqQH2_Alg1RUsbNu5rDUBQ"/>
+<!-- Scanning Line Animation -->
+<div class="absolute top-0 left-0 w-full h-1 bg-primary/40 shadow-[0_0_15px_rgba(0,81,63,0.5)] animate-[scan_2.5s_ease-in-out_infinite]"></div>
+</div>
+<!-- Central Progress Indicator -->
+<div class="relative z-20 flex flex-col items-center">
+<svg class="animate-spin-material w-12 h-12" viewbox="0 0 50 50">
+<circle class="animate-dash-material stroke-primary" cx="25" cy="25" fill="none" r="20" stroke-width="4"></circle>
+</svg>
+</div>
+</div>
+<!-- Status Messaging -->
+<div class="z-10 text-center fade-in-up" style="animation-delay: 0.2s;">
+<h2 class="font-section-title text-section-title text-text-primary mb-base">Analyzing image...</h2>
+<!-- Privacy Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-secondary rounded-full border border-divider">
+<span class="material-symbols-outlined text-[16px] text-positive" data-icon="shield_person" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+<span class="font-label-compact text-label-compact text-on-secondary-container">Processing locally for your privacy</span>
+</div>
+</div>
+<!-- Bento-style informative cards (Static/Decorative for depth) -->
+<div class="mt-12 grid grid-cols-2 gap-stack-md w-full max-w-md opacity-60 fade-in-up" style="animation-delay: 0.4s;">
+<div class="bg-surface-primary p-4 rounded-[20px] border border-divider flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="auto_awesome">auto_awesome</span>
+<p class="font-label-compact text-label-compact text-text-secondary">AI Enhancement</p>
+</div>
+<div class="bg-surface-primary p-4 rounded-[20px] border border-divider flex flex-col gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="policy">policy</span>
+<p class="font-label-compact text-label-compact text-text-secondary">Risk Detection</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component - Inactive state for loading) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-base pb-safe bg-surface-container-low border-t border-divider opacity-50 pointer-events-none">
+<div class="flex flex-col items-center justify-center text-secondary px-5 py-1">
+<span class="material-symbols-outlined" data-icon="qr_code_scanner">qr_code_scanner</span>
+<span class="font-label-compact text-label-compact">Scan</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary px-5 py-1">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-label-compact text-label-compact">Library</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary px-5 py-1">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-compact text-label-compact">Settings</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction: Simulated status message cycling
+        const statusText = document.querySelector('h2');
+        const statuses = [
+            "Analyzing image...",
+            "Checking metadata...",
+            "Verifying source...",
+            "Encrypting results..."
+        ];
+        let currentStatus = 0;
+
+        setInterval(() => {
+            currentStatus = (currentStatus + 1) % statuses.length;
+            statusText.style.opacity = 0;
+            setTimeout(() => {
+                statusText.textContent = statuses[currentStatus];
+                statusText.style.opacity = 1;
+            }, 300);
+        }, 3000);
+
+        // Transition logic
+        statusText.style.transition = "opacity 0.3s ease-in-out";
+    </script>
+<style>
+        @keyframes scan {
+            0%, 100% { top: 0%; opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+</body></html>
