@@ -29,4 +29,31 @@ class LibraryItemFixture {
   /// True for the one fixture item used to demonstrate the duplicate-scan
   /// sheet from the Library list.
   final bool isDuplicateExample;
+
+  /// Returns a copy with the given fields replaced. Used only for local,
+  /// session-only preview mutations (favorite, note, collection, occurrence
+  /// count) — never for persistence. Pass [clearNote] or [clearCollection]
+  /// to explicitly null out those fields, since a plain `null` argument
+  /// means "leave unchanged".
+  LibraryItemFixture copyWith({
+    String? collectionId,
+    String? note,
+    bool clearCollection = false,
+    bool clearNote = false,
+    bool? isFavorite,
+    int? occurrenceCount,
+  }) {
+    return LibraryItemFixture(
+      id: id,
+      result: result,
+      savedAt: savedAt,
+      collectionId: clearCollection
+          ? null
+          : (collectionId ?? this.collectionId),
+      note: clearNote ? null : (note ?? this.note),
+      isFavorite: isFavorite ?? this.isFavorite,
+      occurrenceCount: occurrenceCount ?? this.occurrenceCount,
+      isDuplicateExample: isDuplicateExample,
+    );
+  }
 }

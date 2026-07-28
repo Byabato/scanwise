@@ -3,10 +3,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../debug/component_gallery_screen.dart';
-import '../../features/library/library_screen.dart';
+import '../../features/library/presentation/collection_detail_screen.dart';
+import '../../features/library/presentation/library_screen.dart';
+import '../../features/library/presentation/scan_detail_screen.dart';
+import '../../features/library/presentation/search_screen.dart';
 import '../../features/onboarding/onboarding_screen.dart';
 import '../../features/scanner/presentation/scan_screen.dart';
-import '../../features/settings/settings_screen.dart';
+import '../../features/settings/presentation/about_screen.dart';
+import '../../features/settings/presentation/appearance_screen.dart';
+import '../../features/settings/presentation/history_preferences_screen.dart';
+import '../../features/settings/presentation/permissions_screen.dart';
+import '../../features/settings/presentation/privacy_data_screen.dart';
+import '../../features/settings/presentation/scanning_preferences_screen.dart';
+import '../../features/settings/presentation/settings_screen.dart';
+import '../../features/settings/presentation/supported_formats_screen.dart';
 import 'app_routes.dart';
 import 'navigation_shell.dart';
 
@@ -44,6 +54,23 @@ GoRouter _buildRouter() => GoRouter(
             GoRoute(
               path: AppRoutes.library,
               builder: (context, state) => const LibraryScreen(),
+              routes: [
+                GoRoute(
+                  path: 'search',
+                  builder: (context, state) => const LibrarySearchScreen(),
+                ),
+                GoRoute(
+                  path: 'scan/:id',
+                  builder: (context, state) =>
+                      ScanDetailScreen(scanId: state.pathParameters['id']!),
+                ),
+                GoRoute(
+                  path: 'collection/:id',
+                  builder: (context, state) => CollectionDetailScreen(
+                    collectionId: state.pathParameters['id']!,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -52,6 +79,37 @@ GoRouter _buildRouter() => GoRouter(
             GoRoute(
               path: AppRoutes.settings,
               builder: (context, state) => const SettingsScreen(),
+              routes: [
+                GoRoute(
+                  path: 'privacy',
+                  builder: (context, state) => const PrivacyDataScreen(),
+                ),
+                GoRoute(
+                  path: 'scanning',
+                  builder: (context, state) =>
+                      const ScanningPreferencesScreen(),
+                ),
+                GoRoute(
+                  path: 'history',
+                  builder: (context, state) => const HistoryPreferencesScreen(),
+                ),
+                GoRoute(
+                  path: 'appearance',
+                  builder: (context, state) => const AppearanceScreen(),
+                ),
+                GoRoute(
+                  path: 'permissions',
+                  builder: (context, state) => const PermissionsScreen(),
+                ),
+                GoRoute(
+                  path: 'formats',
+                  builder: (context, state) => const SupportedFormatsScreen(),
+                ),
+                GoRoute(
+                  path: 'about',
+                  builder: (context, state) => const AboutScreen(),
+                ),
+              ],
             ),
           ],
         ),

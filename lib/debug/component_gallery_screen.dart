@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../features/library/application/library_preview_controller.dart';
+import '../features/library/presentation/collection_detail_screen.dart';
+import '../features/library/presentation/library_screen.dart';
+import '../features/library/presentation/scan_detail_screen.dart';
+import '../features/library/presentation/search_screen.dart';
 import '../features/scanner/presentation/scan_screen.dart';
 import '../features/scanner/presentation/states/gallery_loading_state.dart';
 import '../features/scanner/presentation/states/no_code_found_state.dart';
@@ -7,14 +13,23 @@ import '../features/scanner/presentation/states/permission_denied_state.dart';
 import '../features/scanner/presentation/states/permission_permanently_denied_state.dart';
 import '../features/scanner/presentation/states/scanner_detected_state.dart';
 import '../features/scanner/presentation/states/scanner_unavailable_state.dart';
+import '../features/settings/presentation/about_screen.dart';
+import '../features/settings/presentation/appearance_screen.dart';
+import '../features/settings/presentation/history_preferences_screen.dart';
+import '../features/settings/presentation/permissions_screen.dart';
+import '../features/settings/presentation/privacy_data_screen.dart';
+import '../features/settings/presentation/scanning_preferences_screen.dart';
+import '../features/settings/presentation/settings_screen.dart';
+import '../features/settings/presentation/supported_formats_screen.dart';
+import '../shared/fixtures/catalog/collection_fixtures.dart';
+import '../shared/fixtures/catalog/library_fixtures.dart';
 import '../shared/fixtures/catalog/result_fixtures.dart';
 import '../shared/fixtures/models/result_fixture.dart';
 import '../shared/presentation/result/scan_result_view.dart';
 
-/// Milestone-scoped, debug-only screen for reviewing every scanner state
-/// and result fixture (and, once Milestone 002B lands, every Library and
-/// Settings variant) without needing real camera, permission or
-/// persistence integration.
+/// Milestone-scoped, debug-only screen for reviewing every scanner state,
+/// result fixture, Library state and Settings screen without needing real
+/// camera, permission or persistence integration.
 ///
 /// Registered as a route only when `kDebugMode` is true (see
 /// app/router/app_router.dart) and reachable only from a debug-only row in
@@ -64,6 +79,79 @@ class ComponentGalleryScreen extends StatelessWidget {
               label: '${fixture.typeLabel} — ${fixture.title}',
               builder: (_) => _ResultFixturePreviewScreen(fixture: fixture),
             ),
+          const _SectionHeader('Library'),
+          _GalleryTile(
+            label: 'Populated',
+            builder: (_) => const LibraryScreen(),
+          ),
+          _GalleryTile(
+            label: 'Empty',
+            builder: (_) => ProviderScope(
+              overrides: [
+                libraryPreviewSeedProvider.overrideWithValue(
+                  emptyLibraryItemFixtures,
+                ),
+              ],
+              child: const LibraryScreen(),
+            ),
+          ),
+          _GalleryTile(
+            label: 'Loading',
+            builder: (_) => const LibraryScreen(
+              previewDisplayState: LibraryDisplayState.loading,
+            ),
+          ),
+          _GalleryTile(
+            label: 'Error',
+            builder: (_) => const LibraryScreen(
+              previewDisplayState: LibraryDisplayState.error,
+            ),
+          ),
+          _GalleryTile(
+            label: 'Search',
+            builder: (_) => const LibrarySearchScreen(),
+          ),
+          _GalleryTile(
+            label: 'Scan detail',
+            builder: (_) =>
+                ScanDetailScreen(scanId: trustedUrlLibraryItemFixture.id),
+          ),
+          _GalleryTile(
+            label: 'Collection detail',
+            builder: (_) => CollectionDetailScreen(
+              collectionId: researchCollectionFixture.id,
+            ),
+          ),
+          const _SectionHeader('Settings'),
+          _GalleryTile(
+            label: 'Settings home',
+            builder: (_) => const SettingsScreen(),
+          ),
+          _GalleryTile(
+            label: 'Privacy and data',
+            builder: (_) => const PrivacyDataScreen(),
+          ),
+          _GalleryTile(
+            label: 'Scanning preferences',
+            builder: (_) => const ScanningPreferencesScreen(),
+          ),
+          _GalleryTile(
+            label: 'History preferences',
+            builder: (_) => const HistoryPreferencesScreen(),
+          ),
+          _GalleryTile(
+            label: 'Appearance',
+            builder: (_) => const AppearanceScreen(),
+          ),
+          _GalleryTile(
+            label: 'Permissions',
+            builder: (_) => const PermissionsScreen(),
+          ),
+          _GalleryTile(
+            label: 'Supported formats',
+            builder: (_) => const SupportedFormatsScreen(),
+          ),
+          _GalleryTile(label: 'About', builder: (_) => const AboutScreen()),
         ],
       ),
     );

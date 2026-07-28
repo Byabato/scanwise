@@ -15,10 +15,20 @@ void main() {
 
     await tester.tap(find.text('Library'));
     await tester.pumpAndSettle();
-    expect(find.text('No scans yet'), findsOneWidget);
+    // The Library screen now opens populated with fixture data (Milestone
+    // 002B) rather than an empty placeholder — the AppBar title is the
+    // stable marker that navigation landed on the right destination.
+    expect(find.widgetWithText(AppBar, 'Library'), findsOneWidget);
 
     await tester.tap(find.text('Settings'));
     await tester.pumpAndSettle();
+    // Settings now has more sections than fit in the test viewport, so
+    // scroll the "Theme" row (under Appearance) into view before asserting.
+    await tester.scrollUntilVisible(
+      find.text('Theme'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.text('Theme'), findsOneWidget);
 
     await tester.tap(find.text('Scan'));
