@@ -3,6 +3,19 @@
 
 # 12. `docs/engineering/data-model.md`
 
+> **Milestone 003 status**: the in-memory `ParsedScan` domain model,
+> parsing, normalization and content-identity concepts described below are
+> now implemented in `lib/features/scanning/domain/`. See
+> [domain-model.md](domain-model.md) for the implemented model,
+> [parsing-strategy.md](parsing-strategy.md) for parser order and fallback
+> policy, and [normalization-and-identity.md](normalization-and-identity.md)
+> for normalization rules and the content-identity algorithm. The
+> `scans`/`scan_metadata`/`scan_occurrences`/`collections`/`settings`
+> persistence tables below remain **not yet implemented** — no Drift/SQLite
+> integration exists yet, and duplicate-recognition *behavior* (reading
+> `ContentIdentity` back to detect a repeat scan) is deferred to that
+> persistence milestone.
+
 ```md
 # ScanWise Data Model
 

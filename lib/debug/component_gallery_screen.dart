@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/library/application/library_preview_controller.dart';
+import '../features/scanning/domain/entities/scan_candidate.dart';
+import '../features/scanning/domain/enums/barcode_symbology.dart';
+import '../features/scanning/domain/enums/scan_source.dart';
+import '../features/scanning/domain/parsing/parser_registry.dart';
+import '../features/scanning/domain/parsing/scan_parse_outcome.dart';
+import '../features/scanning/presentation/mapping/parsed_scan_presentation_mapper.dart';
 import '../features/library/presentation/collection_detail_screen.dart';
 import '../features/library/presentation/library_screen.dart';
 import '../features/library/presentation/scan_detail_screen.dart';
@@ -78,6 +84,13 @@ class ComponentGalleryScreen extends StatelessWidget {
             _GalleryTile(
               label: '${fixture.typeLabel} — ${fixture.title}',
               builder: (_) => _ResultFixturePreviewScreen(fixture: fixture),
+            ),
+          const _SectionHeader('Parsed scans (live, Milestone 003)'),
+          for (final sample in _liveParsedScanSamples)
+            _GalleryTile(
+              label: sample.label,
+              builder: (_) =>
+                  _ResultFixturePreviewScreen(fixture: sample.buildFixture()),
             ),
           const _SectionHeader('Library'),
           _GalleryTile(
@@ -205,3 +218,76 @@ class _ResultFixturePreviewScreen extends StatelessWidget {
     );
   }
 }
+
+/// One raw scan value run through the real Milestone 003 pipeline
+/// ([ParserRegistry] → [mapParsedScanToResultFixture]) instead of a
+/// hand-authored fixture — demonstrates that authoritative [ParsedScan]
+/// output renders through the same unmodified [ScanResultView] the
+/// fixture catalog does, without replacing that catalog (see
+/// docs/plans/003-domain-and-parsing.md).
+class _LiveScanSample {
+  const _LiveScanSample({required this.label, required this.candidate});
+
+  final String label;
+  final ScanCandidate candidate;
+
+  ResultFixture buildFixture() {
+    final outcome = ParserRegistry().parse(candidate);
+    if (outcome is ScanParseOutcomeSuccess) {
+      return mapParsedScanToResultFixture(outcome.scan);
+    }
+    // Only reachable for empty/oversized input, neither of which any
+    // sample below produces.
+    throw StateError('Live gallery sample "$label" failed to parse.');
+  }
+}
+
+_LiveScanSample _sample(
+  String label,
+  String rawValue, {
+  BarcodeSymbology symbology = BarcodeSymbology.qrCode,
+}) {
+  return _LiveScanSample(
+    label: label,
+    candidate: ScanCandidate(
+      rawValue: rawValue,
+      symbology: symbology,
+      source: ScanSource.camera,
+      capturedAt: DateTime.utc(2026, 8, 14, 10),
+    ),
+  );
+}
+
+final List<_LiveScanSample> _liveParsedScanSamples = [
+  _sample('URL', 'https://udsm.ac.tz/account?ref=poster-2026'),
+  _sample('Wi-Fi', 'WIFI:T:WPA;S:NEBO Guest;P:nebo_guest_2024;H:false;;'),
+  _sample(
+    'Contact (vCard)',
+    'BEGIN:VCARD\nVERSION:3.0\nN:Jenkins;Sarah;;;\nORG:TechConf\n'
+        'TEL:+14155550142\nEMAIL:sarah.jenkins@techconf.example\n'
+        'URL:https://techconf.example\nEND:VCARD',
+  ),
+  _sample('Email', 'mailto:admissions@udsm.ac.tz'),
+  _sample('Phone', 'tel:+255222410500'),
+  _sample('SMS', 'smsto:+255754000111:REG 2026 to confirm attendance'),
+  _sample('Location', 'geo:-6.7735,39.2087?q=Mlimani%20City%20Mall'),
+  _sample(
+    'Calendar event',
+    'BEGIN:VEVENT\nSUMMARY:ScanWise Product Review\n'
+        'DTSTART:20260814T100000Z\nDTEND:20260814T110000Z\n'
+        'LOCATION:Conference Room B\nORGANIZER:mailto:kelvin@scanwise.example\n'
+        'END:VEVENT',
+  ),
+  _sample(
+    'Product (EAN-13)',
+    '4006381333931',
+    symbology: BarcodeSymbology.ean13,
+  ),
+  _sample(
+    'ISBN (EAN-13, Bookland)',
+    '9780306406157',
+    symbology: BarcodeSymbology.ean13,
+  ),
+  _sample('Plain text', 'Booth 14B — badge pickup opens 08:00.'),
+  _sample('Unknown', '\x01\x02unreadable'),
+];

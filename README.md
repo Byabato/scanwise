@@ -31,10 +31,23 @@ Capture → Interpret → Assess → Act → Organize
 
 ## Status
 
-Project foundation milestone complete (`docs/plans/001-project-foundation.md`):
-a runnable Android Flutter shell with onboarding, Material 3 design tokens,
-and Scan / Library / Settings navigation. No scanner, persistence or real
-external actions are implemented yet.
+- Project foundation milestone complete (`docs/plans/001-project-foundation.md`):
+  a runnable Android Flutter shell with onboarding, Material 3 design tokens,
+  and Scan / Library / Settings navigation.
+- Static UI milestone complete (Milestone 002): the Scanner result sheet,
+  all 12 result kinds, and the Library/Settings screens, built against
+  hand-authored fixtures.
+- Domain and parsing milestone complete (`docs/plans/003-domain-and-parsing.md`):
+  the authoritative `ParsedScan` domain model, normalization, a
+  precedence-ordered parser registry covering every Milestone 002 result
+  kind plus ISBN, deterministic content identity, and a mapper from real
+  `ParsedScan` output onto the existing result UI. See
+  `docs/engineering/domain-model.md`, `docs/engineering/parsing-strategy.md`
+  and `docs/engineering/normalization-and-identity.md`.
+
+No scanner, persistence, permissions or real external actions are
+implemented yet — parsing is pure Dart and runs on hand-built or
+debug-gallery input only.
 
 ## Documentation
 
@@ -44,7 +57,11 @@ external actions are implemented yet.
 - Architecture: `docs/engineering/architecture.md`
 - Testing strategy: `docs/engineering/testing-strategy.md`
 - Privacy and security: `docs/engineering/privacy-and-security.md`
+- Domain model: `docs/engineering/domain-model.md`
+- Parsing strategy: `docs/engineering/parsing-strategy.md`
+- Normalization and identity: `docs/engineering/normalization-and-identity.md`
 - Foundation execution plan: `docs/plans/001-project-foundation.md`
+- Domain and parsing execution plan: `docs/plans/003-domain-and-parsing.md`
 
 ## Environment requirements
 
