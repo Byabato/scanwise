@@ -1,4 +1,11 @@
-# ScanWise Domain Model (Milestone 003)
+# ScanWise Domain Model (Milestones 003–004)
+
+## Structural URL assessment
+
+URL `ParsedScan` instances carry an authoritative `StructuralAssessment` made
+of ordered `StructuralFinding` values and a `RiskLevel` (`none`, `information`,
+`caution`, `high`). The highest finding severity determines the overall level.
+Presentation maps this model one-way and contains no duplicate security logic.
 
 ## Location
 

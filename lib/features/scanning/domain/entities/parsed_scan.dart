@@ -5,6 +5,7 @@ import '../failures/scan_parse_warning.dart';
 import '../identity/content_identity.dart';
 import 'scan_action_descriptor.dart';
 import 'scan_payload.dart';
+import '../security/structural_assessment.dart';
 
 /// The authoritative, immutable interpretation of one scan.
 ///
@@ -76,5 +77,5 @@ class ParsedScan {
   /// Reserved for the Milestone 004 structural URL/security assessment.
   /// Always null in this milestone — [UrlPayload] already exposes the raw
   /// structural fields that assessment will need.
-  final Object? structuralAssessment;
+  final StructuralAssessment? structuralAssessment;
 }

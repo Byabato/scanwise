@@ -1,5 +1,9 @@
 # ScanWise
 
+Current milestone: **004 — URL structural intelligence**. URL scans receive
+deterministic, offline structural findings and responsible result presentation.
+See `docs/engineering/url-structural-analysis.md`.
+
 ScanWise is a privacy-first Android scan-intelligence application.
 
 It helps users capture, understand, assess, act on and organize information

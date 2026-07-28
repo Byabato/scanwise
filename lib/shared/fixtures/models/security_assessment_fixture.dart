@@ -5,7 +5,7 @@
 /// Language on every fixture using this model must stay within
 /// docs/product/non-goals.md's security limitations: structural signals
 /// only, never a certainty claim about live safety or reputation.
-enum ResultRiskLevel { none, caution, critical }
+enum ResultRiskLevel { none, information, caution, high, critical }
 
 class SecurityFindingFixture {
   const SecurityFindingFixture({

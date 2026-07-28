@@ -4,6 +4,7 @@ import '../../../../shared/fixtures/models/result_action_fixture.dart';
 import '../../../../shared/fixtures/models/result_field_fixture.dart';
 import '../../../../shared/fixtures/models/result_fixture.dart';
 import '../../../../shared/fixtures/models/result_fixture_kind.dart';
+import '../../../../shared/fixtures/models/security_assessment_fixture.dart';
 import '../../domain/entities/parsed_scan.dart';
 import '../../domain/entities/scan_action_descriptor.dart';
 import '../../domain/entities/scan_payload.dart';
@@ -11,6 +12,8 @@ import '../../domain/enums/isbn_format.dart';
 import '../../domain/enums/scan_action_type.dart';
 import '../../domain/enums/scan_kind.dart';
 import '../../domain/enums/wifi_security_type.dart';
+import '../../domain/security/risk_level.dart';
+import '../../domain/security/structural_assessment.dart';
 
 /// Maps an authoritative [ParsedScan] onto the Milestone 002
 /// [ResultFixture] view model, so a real parse result renders through the
@@ -35,12 +38,12 @@ ResultFixture mapParsedScanToResultFixture(ParsedScan scan) {
 
   return ResultFixture(
     id: 'scan-${scan.identity.kind.name}-${scan.identity.value}',
-    kind: _mapKind(scan.kind),
+    kind: _mapKind(scan),
     typeLabel: _typeLabel(scan.kind),
     title: scan.title,
     subtitle: scan.subtitle,
     fields: _mapFields(scan.payload),
-    security: null,
+    security: _mapAssessment(scan.structuralAssessment),
     primaryAction: actions.primary,
     secondaryActions: actions.secondary,
     technicalDetails: scan.attributes.entries
@@ -52,8 +55,12 @@ ResultFixture mapParsedScanToResultFixture(ParsedScan scan) {
   );
 }
 
-ResultFixtureKind _mapKind(ScanKind kind) => switch (kind) {
-  ScanKind.url => ResultFixtureKind.trustedUrl,
+ResultFixtureKind _mapKind(ParsedScan scan) => switch (scan.kind) {
+  ScanKind.url =>
+    scan.structuralAssessment?.riskLevel == RiskLevel.caution ||
+            scan.structuralAssessment?.riskLevel == RiskLevel.high
+        ? ResultFixtureKind.suspiciousUrl
+        : ResultFixtureKind.trustedUrl,
   ScanKind.wifi => ResultFixtureKind.wifi,
   ScanKind.contact => ResultFixtureKind.contact,
   ScanKind.email => ResultFixtureKind.email,
@@ -66,6 +73,30 @@ ResultFixtureKind _mapKind(ScanKind kind) => switch (kind) {
   ScanKind.plainText => ResultFixtureKind.plainText,
   ScanKind.unknown => ResultFixtureKind.unsupported,
 };
+
+SecurityAssessmentFixture? _mapAssessment(StructuralAssessment? assessment) {
+  if (assessment == null) return null;
+  return SecurityAssessmentFixture(
+    severity: switch (assessment.riskLevel) {
+      RiskLevel.none => ResultRiskLevel.none,
+      RiskLevel.information => ResultRiskLevel.information,
+      RiskLevel.caution => ResultRiskLevel.caution,
+      RiskLevel.high => ResultRiskLevel.high,
+    },
+    headline: assessment.headline,
+    explanation:
+        '${assessment.explanation} ScanWise cannot verify the current reputation of this website while offline.',
+    findings: assessment.findings
+        .map(
+          (finding) => SecurityFindingFixture(
+            code: finding.code,
+            title: finding.headline,
+            explanation: finding.explanation,
+          ),
+        )
+        .toList(growable: false),
+  );
+}
 
 String _typeLabel(ScanKind kind) => switch (kind) {
   ScanKind.url => 'Website link',
@@ -115,13 +146,17 @@ List<ResultFieldFixture> _mapFields(ScanPayload payload) => switch (payload) {
 
 List<ResultFieldFixture> _urlFields(UrlPayload p) => [
   ResultFieldFixture(
-    label: 'Destination',
+    label: 'Destination host',
     value: p.host ?? p.rawUrl,
     icon: Icons.public,
   ),
   ResultFieldFixture(
     label: 'Connection',
-    value: p.scheme == 'https' ? 'HTTPS (encrypted)' : 'HTTP (not encrypted)',
+    value: p.scheme == 'https'
+        ? 'HTTPS (encrypted connection only)'
+        : p.scheme == 'http'
+        ? 'HTTP (not encrypted)'
+        : '${p.scheme.toUpperCase()} (unsupported)',
     icon: p.scheme == 'https'
         ? Icons.lock_outline
         : Icons.no_encryption_outlined,

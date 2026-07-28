@@ -17,8 +17,8 @@ void main() {
       expect(parser.canParse(candidate('http://example.com')), isTrue);
     });
 
-    test('declines an unsupported scheme', () {
-      expect(parser.canParse(candidate('ftp://example.com')), isFalse);
+    test('accepts an explicit unsupported scheme for safe assessment', () {
+      expect(parser.canParse(candidate('ftp://example.com')), isTrue);
     });
 
     test('declines text that merely resembles a URL', () {
@@ -53,12 +53,13 @@ void main() {
       expect(payload.port, 8443);
     });
 
-    test('drops an explicit default port', () {
+    test('preserves an explicit default port for structural assessment', () {
       final result =
           parser.parse(candidate('https://example.com:443/path'))
               as ScanParseSuccess;
       final payload = result.payload as UrlPayload;
-      expect(payload.port, isNull);
+      expect(payload.port, 443);
+      expect(payload.hasExplicitPort, isTrue);
     });
 
     test('exposes query', () {
@@ -85,9 +86,17 @@ void main() {
       expect(payload.hasUserInfo, isTrue);
     });
 
-    test('fails safely on malformed percent-encoding', () {
+    test('preserves malformed percent-encoding for structural assessment', () {
       final result = parser.parse(candidate('https://example.com/%zz'));
-      expect(result, isA<ScanParseFailed>());
+      expect(result, isA<ScanParseSuccess>());
+      expect(
+        (result as ScanParseSuccess).payload,
+        isA<UrlPayload>().having(
+          (payload) => payload.hasMalformedEncoding,
+          'hasMalformedEncoding',
+          isTrue,
+        ),
+      );
     });
 
     test('normalizedValue lowercases scheme and host, keeps path case', () {

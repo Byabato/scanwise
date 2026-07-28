@@ -85,6 +85,13 @@ class ComponentGalleryScreen extends StatelessWidget {
               label: '${fixture.typeLabel} — ${fixture.title}',
               builder: (_) => _ResultFixturePreviewScreen(fixture: fixture),
             ),
+          const _SectionHeader('URL structural analysis (Milestone 004)'),
+          for (final sample in _urlAnalysisSamples)
+            _GalleryTile(
+              label: sample.label,
+              builder: (_) =>
+                  _ResultFixturePreviewScreen(fixture: sample.buildFixture()),
+            ),
           const _SectionHeader('Parsed scans (live, Milestone 003)'),
           for (final sample in _liveParsedScanSamples)
             _GalleryTile(
@@ -290,4 +297,27 @@ final List<_LiveScanSample> _liveParsedScanSamples = [
   ),
   _sample('Plain text', 'Booth 14B — badge pickup opens 08:00.'),
   _sample('Unknown', '\x01\x02unreadable'),
+];
+
+final List<_LiveScanSample> _urlAnalysisSamples = [
+  _sample('Normal HTTPS', 'https://example.com/account'),
+  _sample('HTTP', 'http://example.com/account'),
+  _sample('Explicit default port', 'https://example.com:443'),
+  _sample('Unusual port', 'https://example.com:9443'),
+  _sample('IPv4 host', 'https://8.8.8.8'),
+  _sample('IPv6 host', 'https://[2001:4860:4860::8888]'),
+  _sample('Localhost', 'http://localhost:8080'),
+  _sample('Private network', 'https://192.168.1.20'),
+  _sample('Excessive subdomains', 'https://a.b.c.d.e.f.example.com'),
+  _sample('Embedded credentials', 'https://account.example:masked@example.net'),
+  _sample('Punycode', 'https://xn--bcher-kva.example'),
+  _sample('Unicode hostname', 'https://bücher.example'),
+  _sample('Shortened URL', 'https://bit.ly/example'),
+  _sample(
+    'Nested URL',
+    'https://example.com/go?next=https%3A%2F%2Fother.example',
+  ),
+  _sample('Malformed encoding', 'https://example.com/%zz'),
+  _sample('Unsupported scheme', 'ftp://example.com/file'),
+  _sample('Multiple findings', 'http://user:masked@127.0.0.1:9443/path'),
 ];

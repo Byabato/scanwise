@@ -9,6 +9,7 @@ import '../enums/scan_source.dart';
 import '../failures/scan_parse_failure.dart';
 import '../failures/scan_parse_warning.dart';
 import '../identity/content_identity_builder.dart';
+import '../security/url_structural_analyzer.dart';
 import 'parsers/calendar_parser.dart';
 import 'parsers/contact_parser.dart';
 import 'parsers/email_parser.dart';
@@ -123,9 +124,13 @@ class ParserRegistry {
       payload: success.payload,
       normalizedValue: success.normalizedValue,
     );
+    final assessment = success.payload is UrlPayload
+        ? const UrlStructuralAnalyzer().analyze(success.payload as UrlPayload)
+        : null;
     final actions = resolveScanActions(
       kind: success.kind,
       payload: success.payload,
+      structuralAssessment: assessment,
     );
     final attributes = _buildAttributes(candidate, success.payload);
 
@@ -143,6 +148,7 @@ class ParserRegistry {
       attributes: attributes,
       actions: actions,
       warnings: [...priorWarnings, ...success.warnings],
+      structuralAssessment: assessment,
     );
   }
 

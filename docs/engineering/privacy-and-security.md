@@ -1,6 +1,14 @@
 
 ---
 
+## Milestone 004 URL structural intelligence
+
+URL analysis is local-only and deterministic. It performs no network, DNS,
+redirect, certificate, WHOIS, or reputation requests. Findings do not include
+embedded credentials or query values; nested destinations expose only a safe
+parameter name. See `docs/engineering/url-structural-analysis.md` for the
+catalogue and limitations.
+
 # 13. `docs/engineering/privacy-and-security.md`
 
 ```md

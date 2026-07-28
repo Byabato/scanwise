@@ -2,6 +2,8 @@ import '../entities/scan_action_descriptor.dart';
 import '../entities/scan_payload.dart';
 import '../enums/scan_action_type.dart';
 import '../enums/scan_kind.dart';
+import '../security/risk_level.dart';
+import '../security/structural_assessment.dart';
 
 /// Derives the context-aware [ScanActionDescriptor]s for a parsed result,
 /// per docs/product/product-contract.md pillar 3 ("Context-Aware
@@ -21,9 +23,10 @@ import '../enums/scan_kind.dart';
 List<ScanActionDescriptor> resolveScanActions({
   required ScanKind kind,
   required ScanPayload payload,
+  StructuralAssessment? structuralAssessment,
 }) {
   return switch (payload) {
-    UrlPayload p => _urlActions(p),
+    UrlPayload p => _urlActions(p, structuralAssessment),
     WifiPayload p => _wifiActions(p),
     ContactPayload p => _contactActions(p),
     ProductPayload p => _productOrIsbnActions(copyValue: p.identifier),
@@ -85,13 +88,19 @@ ScanActionDescriptor _save() {
   );
 }
 
-List<ScanActionDescriptor> _urlActions(UrlPayload payload) => [
+List<ScanActionDescriptor> _urlActions(
+  UrlPayload payload,
+  StructuralAssessment? assessment,
+) => [
   ScanActionDescriptor(
     type: ScanActionType.open,
     label: 'Open website',
     enabled: false,
     disabledReason: _openDisabledReason,
-    requiresConfirmation: true,
+    requiresConfirmation:
+        assessment == null ||
+        assessment.riskLevel == RiskLevel.caution ||
+        assessment.riskLevel == RiskLevel.high,
     isPrimary: true,
   ),
   ScanActionDescriptor(

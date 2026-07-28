@@ -27,6 +27,10 @@ final class UrlPayload extends ScanPayload {
     required this.query,
     required this.fragment,
     required this.hasUserInfo,
+    this.hasExplicitPort = false,
+    this.hasMalformedEncoding = false,
+    this.hasControlCharacters = false,
+    this.nestedUrlParameterNames = const [],
   });
 
   final String rawUrl;
@@ -48,6 +52,10 @@ final class UrlPayload extends ScanPayload {
   /// True when the URL embeds credentials (`user:pass@host`) — a
   /// structural risk signal, not a claim about validity.
   final bool hasUserInfo;
+  final bool hasExplicitPort;
+  final bool hasMalformedEncoding;
+  final bool hasControlCharacters;
+  final List<String> nestedUrlParameterNames;
 }
 
 /// A `WIFI:` QR payload.

@@ -15,19 +15,25 @@ class SecurityAssessmentPanel extends StatelessWidget {
 
   static Color _tint(ResultRiskLevel severity) => switch (severity) {
     ResultRiskLevel.critical => AppColors.critical,
+    ResultRiskLevel.high => AppColors.critical,
     ResultRiskLevel.caution => AppColors.caution,
+    ResultRiskLevel.information => AppColors.caution,
     ResultRiskLevel.none => AppColors.positive,
   };
 
   static IconData _icon(ResultRiskLevel severity) => switch (severity) {
     ResultRiskLevel.critical => Icons.gpp_bad_outlined,
+    ResultRiskLevel.high => Icons.gpp_bad_outlined,
     ResultRiskLevel.caution => Icons.warning_amber_rounded,
+    ResultRiskLevel.information => Icons.info_outline,
     ResultRiskLevel.none => Icons.verified_outlined,
   };
 
   static String _severityLabel(ResultRiskLevel severity) => switch (severity) {
     ResultRiskLevel.critical => 'Critical',
+    ResultRiskLevel.high => 'High concern',
     ResultRiskLevel.caution => 'Caution',
+    ResultRiskLevel.information => 'Information',
     ResultRiskLevel.none => 'No warning',
   };
 

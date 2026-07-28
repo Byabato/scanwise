@@ -19,7 +19,8 @@ void main() {
     expect(fixture.kind, ResultFixtureKind.trustedUrl);
     expect(fixture.title, 'example.com');
     expect(fixture.rawPayload, 'https://example.com');
-    expect(fixture.security, isNull);
+    expect(fixture.security, isNotNull);
+    expect(fixture.security!.findings, isEmpty);
   });
 
   test(
