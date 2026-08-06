@@ -105,5 +105,27 @@ void main() {
               as ScanParseSuccess;
       expect(result.normalizedValue, 'https://example.com/Account');
     });
+
+    test('decodes a percent-encoded non-ASCII host back to readable Unicode '
+        '(Uri.host itself UTF-8 percent-encodes non-ASCII characters, which '
+        'would otherwise hide them from display and from Milestone 004\'s '
+        'Unicode structural checks)', () {
+      final result =
+          parser.parse(
+                candidate('https://b${String.fromCharCode(0xfc)}cher.example'),
+              )
+              as ScanParseSuccess;
+      final payload = result.payload as UrlPayload;
+      expect(payload.host, 'b${String.fromCharCode(0xfc)}cher.example');
+      expect(payload.host, isNot(contains('%')));
+    });
+
+    test('a punycode host round-trips unchanged (no percent-encoding)', () {
+      final result =
+          parser.parse(candidate('https://xn--bcher-kva.example'))
+              as ScanParseSuccess;
+      final payload = result.payload as UrlPayload;
+      expect(payload.host, 'xn--bcher-kva.example');
+    });
   });
 }

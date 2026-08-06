@@ -48,10 +48,17 @@ Capture → Interpret → Assess → Act → Organize
   `ParsedScan` output onto the existing result UI. See
   `docs/engineering/domain-model.md`, `docs/engineering/parsing-strategy.md`
   and `docs/engineering/normalization-and-identity.md`.
+- URL structural intelligence milestone complete
+  (`docs/plans/004-url-structural-intelligence.md`): deterministic, local-only
+  URL structural findings (scheme, host, port, credentials, IP/local-network,
+  subdomains, punycode/Unicode, shorteners, length/encoding), a documented
+  finding catalogue and severity aggregator, and trusted/concerning result
+  presentation for both fixtures and live `ParsedScan` output. See
+  `docs/engineering/url-structural-analysis.md`.
 
 No scanner, persistence, permissions or real external actions are
-implemented yet — parsing is pure Dart and runs on hand-built or
-debug-gallery input only.
+implemented yet — parsing and URL structural analysis are pure Dart and run
+on hand-built or debug-gallery input only.
 
 ## Documentation
 
@@ -64,8 +71,11 @@ debug-gallery input only.
 - Domain model: `docs/engineering/domain-model.md`
 - Parsing strategy: `docs/engineering/parsing-strategy.md`
 - Normalization and identity: `docs/engineering/normalization-and-identity.md`
+- URL structural analysis: `docs/engineering/url-structural-analysis.md`
 - Foundation execution plan: `docs/plans/001-project-foundation.md`
 - Domain and parsing execution plan: `docs/plans/003-domain-and-parsing.md`
+- URL structural intelligence execution plan:
+  `docs/plans/004-url-structural-intelligence.md`
 
 ## Environment requirements
 

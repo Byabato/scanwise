@@ -1,17 +1,3 @@
-
----
-
-## Milestone 004 URL structural intelligence
-
-URL analysis is local-only and deterministic. It performs no network, DNS,
-redirect, certificate, WHOIS, or reputation requests. Findings do not include
-embedded credentials or query values; nested destinations expose only a safe
-parameter name. See `docs/engineering/url-structural-analysis.md` for the
-catalogue and limitations.
-
-# 13. `docs/engineering/privacy-and-security.md`
-
-```md
 # ScanWise Privacy and Security
 
 ## Core privacy promise
@@ -63,6 +49,13 @@ Each finding should include:
 - title;
 - explanation;
 - technical detail where helpful.
+
+URL structural analysis (Milestone 004) is local-only and deterministic: it
+performs no network, DNS, redirect, certificate, WHOIS, or reputation
+requests. Findings never carry embedded credentials or raw query values; a
+nested-destination finding exposes only the safe parameter name. See
+[url-structural-analysis.md](url-structural-analysis.md) for the finding
+catalogue, severity policy and documented limitations.
 
 ## External actions
 

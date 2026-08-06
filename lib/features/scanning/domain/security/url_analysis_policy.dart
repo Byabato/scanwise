@@ -17,5 +17,4 @@ class UrlAnalysisPolicy {
   static const maximumHostnameLength = 253;
   static const maximumLabelLength = 63;
   static const maximumHostLabels = 5;
-  static const maximumQueryParameters = 20;
 }

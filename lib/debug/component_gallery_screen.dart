@@ -313,6 +313,7 @@ final List<_LiveScanSample> _urlAnalysisSamples = [
   _sample('Punycode', 'https://xn--bcher-kva.example'),
   _sample('Unicode hostname', 'https://bücher.example'),
   _sample('Shortened URL', 'https://bit.ly/example'),
+  _sample('Long URL', 'https://example.com/${'a' * 2100}'),
   _sample(
     'Nested URL',
     'https://example.com/go?next=https%3A%2F%2Fother.example',

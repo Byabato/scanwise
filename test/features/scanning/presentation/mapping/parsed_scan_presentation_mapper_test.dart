@@ -23,6 +23,33 @@ void main() {
     expect(fixture.security!.findings, isEmpty);
   });
 
+  test('maps a URL scan with structural findings onto the suspiciousUrl '
+      'fixture kind, with the destination host prominent and findings '
+      'preserved in severity order', () {
+    final scan = parse('http://user:secret@127.0.0.1:9443/path').scan;
+    final fixture = mapParsedScanToResultFixture(scan);
+
+    expect(fixture.kind, ResultFixtureKind.suspiciousUrl);
+    // The destination host is the title — never the misleading
+    // credentials text or the full raw address.
+    expect(fixture.title, '127.0.0.1');
+    expect(fixture.security, isNotNull);
+    expect(fixture.security!.findings, isNotEmpty);
+    expect(
+      fixture.security!.findings.map((f) => f.code),
+      scan.structuralAssessment!.findings.map((f) => f.code),
+    );
+    // Never expose the credentials in a finding's title or explanation.
+    for (final finding in fixture.security!.findings) {
+      expect(finding.title, isNot(contains('secret')));
+      expect(finding.explanation, isNot(contains('secret')));
+    }
+    // The raw address (including credentials) is only ever available
+    // collapsed behind the raw payload, never surfaced as a field.
+    expect(fixture.rawPayload, contains('secret'));
+    expect(fixture.fields.any((f) => f.value.contains('secret')), isFalse);
+  });
+
   test(
     'maps a Wi-Fi scan with a masked, demonstrable copy-password action',
     () {

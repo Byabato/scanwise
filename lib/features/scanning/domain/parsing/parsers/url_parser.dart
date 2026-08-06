@@ -40,6 +40,14 @@ class UrlParser implements ScanPayloadParser {
     }
 
     final scheme = uri.scheme.toLowerCase();
+    // Uri.host percent-encodes non-ASCII characters as raw UTF-8 bytes
+    // (e.g. "bücher.example" becomes "b%C3%BCcher.example") rather than
+    // punycode-encoding them — decode it back to the readable Unicode form
+    // so display and Unicode/mixed-script structural analysis see the
+    // actual hostname instead of an ASCII-looking percent-encoded string.
+    // A punycode ("xn--...") host has no percent-encoding to begin with,
+    // so it round-trips unchanged.
+    final host = _decodeHost(uri.host);
     final explicitPort = _explicitPort(value);
     final nestedNames = <String>[];
     try {
@@ -61,7 +69,7 @@ class UrlParser implements ScanPayloadParser {
         rawUrl: value,
         uri: uri,
         scheme: scheme,
-        host: uri.host,
+        host: host,
         port: explicitPort,
         path: uri.path,
         query: uri.query,
@@ -81,7 +89,7 @@ class UrlParser implements ScanPayloadParser {
         ),
         nestedUrlParameterNames: nestedNames,
       ),
-      title: uri.host,
+      title: host,
       normalizedValue: normalizeUrl(uri),
     );
   }
@@ -99,6 +107,18 @@ class UrlParser implements ScanPayloadParser {
         ? RegExp(r'^\[[^]]+\]:(\d+)$').firstMatch(authority)
         : RegExp(r':(\d+)$').firstMatch(authority);
     return match == null ? null : int.tryParse(match.group(1)!);
+  }
+
+  /// Reverses Uri's UTF-8 percent-encoding of a non-ASCII host. Falls
+  /// back to the percent-encoded form on decode failure — that can only
+  /// happen if the encoded bytes are not valid UTF-8, which Uri itself
+  /// never produces, but a defensive fallback avoids ever throwing.
+  String _decodeHost(String host) {
+    try {
+      return Uri.decodeComponent(host);
+    } on FormatException {
+      return host;
+    }
   }
 
   String _decodeRepeatedly(String value) {

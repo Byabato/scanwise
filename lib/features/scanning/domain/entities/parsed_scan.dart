@@ -74,8 +74,9 @@ class ParsedScan {
   /// docs/engineering/parsing-strategy.md's fallback policy.
   final List<ScanParseWarning> warnings;
 
-  /// Reserved for the Milestone 004 structural URL/security assessment.
-  /// Always null in this milestone — [UrlPayload] already exposes the raw
-  /// structural fields that assessment will need.
+  /// The Milestone 004 structural URL/security assessment. Computed by
+  /// `ParserRegistry` for every [ScanKind.url] result via
+  /// `UrlStructuralAnalyzer` — always null for every other kind. See
+  /// docs/engineering/url-structural-analysis.md.
   final StructuralAssessment? structuralAssessment;
 }

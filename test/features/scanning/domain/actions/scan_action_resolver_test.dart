@@ -5,6 +5,8 @@ import 'package:scanwise/features/scanning/domain/enums/barcode_symbology.dart';
 import 'package:scanwise/features/scanning/domain/enums/scan_action_type.dart';
 import 'package:scanwise/features/scanning/domain/enums/scan_kind.dart';
 import 'package:scanwise/features/scanning/domain/enums/wifi_security_type.dart';
+import 'package:scanwise/features/scanning/domain/security/risk_level.dart';
+import 'package:scanwise/features/scanning/domain/security/structural_assessment.dart';
 
 void main() {
   test('exactly one action is primary, for every kind', () {
@@ -145,5 +147,58 @@ void main() {
         );
       }
     });
+
+    StructuralAssessment assessmentOf(RiskLevel level) => StructuralAssessment(
+      riskLevel: level,
+      headline: 'headline',
+      explanation: 'explanation',
+      findings: const [],
+    );
+
+    final payload = UrlPayload(
+      rawUrl: 'https://example.com',
+      uri: Uri.parse('https://example.com'),
+      scheme: 'https',
+      host: 'example.com',
+      port: null,
+      path: '/',
+      query: '',
+      fragment: '',
+      hasUserInfo: false,
+    );
+
+    test('no assessment yet requires confirmation (fail safe)', () {
+      final actions = resolveScanActions(kind: ScanKind.url, payload: payload);
+      final open = actions.firstWhere((a) => a.type == ScanActionType.open);
+      expect(open.requiresConfirmation, isTrue);
+    });
+
+    for (final level in [RiskLevel.none, RiskLevel.information]) {
+      test('${level.name} risk does not require extra confirmation', () {
+        final actions = resolveScanActions(
+          kind: ScanKind.url,
+          payload: payload,
+          structuralAssessment: assessmentOf(level),
+        );
+        final open = actions.firstWhere((a) => a.type == ScanActionType.open);
+        expect(open.requiresConfirmation, isFalse);
+        // Open still cannot fire on its own — it is unconditionally
+        // disabled until external-action integration lands.
+        expect(open.enabled, isFalse);
+      });
+    }
+
+    for (final level in [RiskLevel.caution, RiskLevel.high]) {
+      test('${level.name} risk requires confirmation', () {
+        final actions = resolveScanActions(
+          kind: ScanKind.url,
+          payload: payload,
+          structuralAssessment: assessmentOf(level),
+        );
+        final open = actions.firstWhere((a) => a.type == ScanActionType.open);
+        expect(open.requiresConfirmation, isTrue);
+        expect(open.enabled, isFalse);
+      });
+    }
   });
 }
